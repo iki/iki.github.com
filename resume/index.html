@@ -1,0 +1,537 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!--
+Used to HTML5? 
+Advance carefully then, this is an indigenous table layout from last century.
+Eye/brain hurting effect is almost inevitable ;)
+-->
+<HTML lang="en">
+<HEAD>
+<META name="Description" lang="en"	content="Resume of Jan Killian">
+<META name="Author"			content="Jan Killian">
+<META name="Date"			content="2011-07-11">
+<META name="Resource-type"		content="document">
+<META http-equiv="Window-target"	content="_top">
+<META http-equiv="Content-language"	content="en">
+<META http-equiv="Content-type" content="text/html; charset=utf-8">
+<TITLE>Resume of Jan Killian</TITLE>
+
+<!--	 common browsers
+msie	 win	   4.0 - 6.1	*/letter-spacing not adjusted to */font-size
+mozilla	 linux/win 0.9.8/1.0rc1	flawless
+opera	 linux/win 6.0x/7.5x	td#width not respected
+				page-break-* moves element position in doc
+				text-align=justify not printed correctly
+konquer. linux	   2.2.2	*/letter-spacing, */text-align=justify ignored	 
+links	 linux	   0.97		good, doesn't display link comments
+				h2 not indented when display tables is on
+				- switch display tables off
+lynx	 linux/win 2.8.5/3	good, doesn't display link comments
+----	 outdated browsers
+opera	 win	   5.0		*/padding (vert.) disarranged
+netscape win	   4.08		doesn't display link comments
+				some words partially out of page when printed
+				*/letter-spacing, li/text-align ignored
+				center, a:hover, a:active ignored
+                                */font-size somewhere badly interpreted
+				result well readable
+msie	 win	   3.12		doesn't display link comments,
+				treats em as px, relates %s to default !parent
+				many css flaws, result readable
+-->
+
+<STYLE type="text/css" media=all><!--
+
+body	{		/* base.body */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	color:		#000000;
+	background:	#E8F0FF	none;
+			}
+td	{		/* base.body-table */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	font-size:	70%;
+	font-weight:	normal;
+	text-align:	left;
+	vertical-align:	top;					/* inlelmatr */
+			}
+p	{		/* base.text */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	font-weight:	normal;
+	text-align:	left;
+	text-indent:	0em;
+        margin:		0em;
+	padding:	0em;
+			}
+a	{		/* base.anchor */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	font-weight:	normal;
+	text-decoration:none;
+	border-style:	none none;
+	color:		#004080;
+	background:	transparent none;
+			}
+a:hover	{		/* base.anchor.hover */
+	color:		#FF0000;
+	background:	transparent none;
+			}
+a:active	{	/* base.anchor.active */
+	color:		#FFFF20;
+	background:	#0050A0 none;
+			}
+ul	{		/* base.list-of-items */
+	margin:		0em 0em 0em 3em;
+	padding:	0em;
+	list-style:	square outside;
+	page-break-before: never;
+	page-break-inside: never;
+			}
+ul.inln	{		/* base.list-of-items.inline */
+	margin:		0.4em 0em 0em 3em;
+	padding:	0em;
+	list-style:	square outside;
+	page-break-before: never;
+	page-break-inside: never;
+			}
+li	{		/* base.listitem */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	font-weight:	normal;
+	text-align:	justify;
+	margin:		0em; 
+	padding:	0em;
+	list-style:	square outside;
+			}
+h1	{		/* level-1.header */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	font-weight:	normal;
+	font-size:	200%;
+	text-decoration:none;
+	letter-spacing:	0.8em;
+        margin:		0em;
+	padding:	0em 1em 1em 0em;
+	page-break-after: never;
+			}
+h2	{		/* level-2.header */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	font-weight:	normal;
+	font-size:	150%;
+	text-decoration:none;
+	letter-spacing: 0.5em;
+        margin:		0em;
+	padding:	1.5em 0em 1em 0em;
+	page-break-after: never;
+			}
+p.h3	{		/* level-3.header */
+	font-weight:	bold;
+	padding:	1.5em 1em 1em 0em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.h31	{		/* level-3.header.first */
+	font-weight:	bold;
+	padding:	0em 1em 1em 0em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.h3s	{		/* level-3.header.with-subheader */
+	font-weight:	bold;
+        padding:	1.5em 1em 0em 0em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.h3s1	{		/* level-3.header.with-subheader.first */
+	font-weight:	bold;
+	padding:	0em 1em 0em 0em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.h4	{		/* level-4.header */
+	padding:	0.3em 1em 0em 0em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.h41	{		/* level-4.header.first */
+	padding:	0em 1em 0em 0em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.p21	{		/* level-2.paragraph.first */
+	text-align:	justify;
+	text-indent:	3em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.p2	{		/* level-2.paragraph */
+	text-align:	justify;
+	text-indent:	3em;
+	padding:	0.3em 0em 0em 0em;
+	page-break-inside: never;
+			}
+p.p31	{		/* level-3.paragraph.first */
+	text-align:	justify;
+	text-indent:	3em;
+	padding:	0.3em 0em 0em 0em;
+	page-break-after: never;
+	page-break-inside: never;
+			}
+p.p3	{		/* level-3.paragraph */
+	text-align:	justify;
+	text-indent:	3em;
+	padding:	0em;
+	page-break-inside: never;
+			}
+.ohdca	{		/* object.document-header.contact */
+	font-size:	80%;
+	text-align:	right;
+	padding:	0px 0px 1px 3px;
+	border-width:	0px 0px 1px 1px;
+	border-style:	solid;
+	border-color:	#0080C0;
+			}
+.otext	{		/* object.text */
+	text-align:	justify;
+			}
+.oldnc	{		/* object.list-of-data.name-column */
+	text-indent:	3em;
+			}
+.odate	{		/* object.date */
+	font-size:	56%;
+	text-align:	right;
+	vertical-align:	bottom;
+			}
+.odati	{		/* object.date.inline */
+	font-size:	56%;
+	text-align:	right;
+	vertical-align:	middle;
+			}
+.orefc	{		/* object.reference */
+	text-align:	right;
+			}
+.orefc	{		/* object.reference */
+	text-align:	right;
+			}
+.srefc	{		/* style.reference */
+	font-size:	80%;
+			}
+.srefl	{		/* style.reference.link */
+	font-weight:	normal;
+			}
+.snote	{		/* style.note */
+	font-size:	80%;
+	color:		#004080;
+	background:	transparent none;
+			}
+.slink	{		/* style.link */
+	font-weight:	normal;
+	color:		#004080;
+	background:	transparent none;
+			}
+@media print {
+body	{		/* base.body */
+	font-family:	verdana, "arial CE", "helvetica CE", arial, helvetica;
+	color:		#000000;
+	background:	#FFFFFF none;
+  			}
+.oprno	{		/* object.print.not */
+	display:	none;
+			}
+	}
+--></STYLE>
+
+<BODY bgcolor="#E8F0FF" text="#000000" link="#004080" vlink="#004080" alink="#004080">
+<!-- vlink=#40A0A0 -->
+<CENTER><TABLE width=600 border=0 cellspacing=0 cellpadding=0>
+
+<TR valign=top><TD colspan=4 nowrap><H1>
+ Jan Killian</H1></TD><TD colspan=2 align=right nowrap><DIV class=ohdca>
+ <A rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Fill the 4 missing surname letters, or click to reveal.">jan.kil....@gmail.com</A>,
+ +42-0776-0776-76<BR>
+ 20&nbsp;Sokolská&nbsp;St., Prague&nbsp;2, 120&nbsp;00,&nbsp;CZ</DIV></TD></TR>
+
+<TR>
+ <TD width="30%" nowrap>&nbsp;</TD>
+ <TD width="20%" nowrap>&nbsp;</TD>
+ <TD width="10%" nowrap>&nbsp;</TD>
+ <TD width="10%" nowrap>&nbsp;</TD>
+ <TD width="10%" nowrap>&nbsp;</TD>
+ <TD width="20%" nowrap>&nbsp;</TD></TR>
+
+<TR class=oprno><TD colspan=6 class=odate align=right nowrap>
+ <A href="resume.pdf">[printable pdf]</A>
+ </TD></TR>
+
+<TR><TD colspan=6 nowrap><H2>Personal data</H2></TD></TR>
+
+<TR valign=top><TD nowrap><DIV class=oldnc>
+ Date of birth:</DIV></TD><TD nowrap>
+ Dec 23rd 1975<BR></TD><TD colspan=4 rowspan=3></TD></TR><TR valign=top><TD nowrap><DIV class=oldnc>
+ Nationality:</DIV></TD><TD nowrap>
+ Czech<BR></TD></TR>
+	
+
+
+
+<TR><TD colspan=6 nowrap><H2>Objective</H2></TD></TR>
+
+<TR><TD colspan=6><P class=p21>
+ Seeking projects abroad to meet people, learn, and have fun following synergy, tackling challenges and embracing new technologies.
+ </P><P class=p2>
+ I'm particularly interested in lean services that shift paradigms for effectivity and open data/service ecosystems.
+ </P><BR><P class=p2>
+ Currently I'm most proficient in the following technologies and areas:
+ </P><UL class=inln type=square>
+ <LI>
+ Python, Linux, Google App Engine
+ <LI>
+ API+UX, NoSQL/SQL data modelling, distributed computing
+ <LI>
+ cloud services, server farm management, security
+ </UL></TD></TR>
+
+
+                            	
+<TR><TD colspan=6 nowrap><H2>Experience</H2></TD></TR>
+
+<TR valign=bottom><TD colspan=5><P class=h3s1><B>
+ Freelance Developer</B></P></TD><TD class=odate align=right nowrap>
+ 2010-2011<BR></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Developed projects using Python, Linux and Google App Engine.
+ </P><UL class=inln type=square>
+ <LI>
+ Built an initial phase of network cloud services management project for an Amsterodam based european network operator.
+ Implemented p2p network testing probes, driven by Kamaelia multithreaded generators and running as deamons under Supervisord on Ubuntu VM nodes.
+ Provided scripted procesess for node management using Fabric/Supervisord,
+ for building, distributing and updating packages in development/test/live environments,
+ and for setting up MongoDB/rsyslog/tinyproxy servers and git versioned nginx apt repositories.
+ The project was stopped due to time constraints on my side and Google Wave (next planned step) fadeout. 
+ <LI>
+ Prototyped Google App Engine Python backend for QR based advertisment monitoring and gaming platform.
+ Our development team did not find agreement with the investing media company though
+ and the project continues development in a limited scope.
+ </UL></TD></TR>
+
+<TR valign=bottom><TD colspan=5><P class=h3s><B>
+ Developer/Specialist</B></P></TD><TD class=odate align=right nowrap>
+ 2005-2009<BR></TD></TR>
+<TR><TD colspan=2 nowrap><A href="http://www.wyeth.com/" title="The development centre in Prague was started in 2005 and brought agile development methods to the company." target="_blank">
+ Commerzbank AG</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN><BR></TD>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>References:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=UystUqiSfeBTPXAsRTl8I2MmgLSgzvO4h1WwDxVivJM=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75UystUqiSfeBTPXAsRTl8I2MmgLSgzvO4h1WwDxVivJM\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Ryan McGloin on infrastructure and maintenance projects. He can give you references to my work. ADS stands for Adaptive Development Services.">Ryan McGloin</A>, Local Head ADS</SPAN></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Took part in an agile development process wherever IT interdisciplinary skills were needed.
+ </P><UL class=inln type=square>
+ <LI>
+ Setup testing environment and SUSE Linux WebSphere/JBoss/Oracle/Sybase server infrastructure.
+ <LI>
+ Analysed Czech branch e-banking and server infrastructure migration to the in-house managed server platform.
+ <LI>
+ Developed reporting and database checking tools (python), Connect:Direct scripting base (ksh, bat) and local servers/desktops/services management scripts (ksh, sh, bash, bat, python, SQL).
+ <LI>
+ Lead local development of Firstspirit-based CMS applications for company Internet websites (java+jython+beanshell).
+ <LI>
+ Co-developed the Application Security Test Concept.
+ </UL></TD></TR>
+
+<TR valign=bottom><TD colspan=5><P class=h3s><B>
+ IT&amp;eB Executive</B></P></TD><TD class=odate align=right nowrap>
+ 2002-2004<BR></TD></TR>
+<TR><TD colspan=2 nowrap><A href="http://www.wyeth.com/" title="Wyeth Czech is a local office of major worldwide pharmaceutical company, acquired by Pfizer in October 2009." target="_blank">
+ Wyeth Czech s.r.o.</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN><BR></TD>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>References:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=Yj_3CIiQJiTJO_gpAUnKIqDXJh_Q2v0cUkl-LIoJAO8=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75Yj_3CIiQJiTJO_gpAUnKIqDXJh_Q2v0cUkl-LIoJAO8\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Vladimír Chmela. He can give you references to my work.">Vladimír Chmela</A>, CFO</SPAN></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Responsible for IT of Czech branch in a global network.
+ </P><UL class=inln type=square>
+ <LI>
+ Managed Novell Netware 5.1 network with Windows 2000 clients, S&amp;M/F&amp;A/R&amp;D
+ applications and Groupwise 5.5. Supported global internet, intranet, WAN,
+ RAS, security, ITC and eB solutions.
+ Planned budget and managed assets, suppliers and services.
+ <LI>
+ Reshaped servers and network to be compliant with global setup and policies,
+ cooperated in merge into global NDS, implemented global ZENworks based
+ workstation management. Coordinated local JDE implementation, network
+ infrastructure upgrade and country intranet setup.
+ </UL></TD></TR>
+
+<TR valign=bottom><TD colspan=5><P class=h3s><B>
+ Network Administrator</B></P></TD><TD class=odate align=right nowrap>
+ 1996-2002<BR></TD></TR>
+<TR><TD colspan=2 nowrap><A href="http://www.hmedia.cz/" title="H-Media provides an in-board healthcare advertisment network in Czech Republic." target="_blank">
+ H-Media s.r.o.</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN><BR></TD>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>References:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Michal Ouzký. He can give you references to my work. Write in Czech please.">Michal Ouzký</A>, Technical Manager</SPAN></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Responsible for IT.
+ </P><UL class=inln type=square>
+ <LI>
+ Implemented and managed Novell Netware 4.11/5.1 network with Windows 95/98/NT
+ clients, S&amp;M/F&amp;A applications
+ and solutions for internet, e-mail, backup, security and data exchange.
+ <LI>
+ Implemented Novell ZENworks based workstation management with Windows
+ deployed from disk images and user applications, policies
+ and profiles automatically delivered from network.
+ </UL></TD></TR>
+
+<!-- <DIV style="page-break-before: always;" clear=all>&nbsp;</DIV> <!-- quickfix for Opera 12 table printing issue -->
+
+<TR valign=bottom><TD colspan=5><P class=h3s><B>
+ MIS Technician</B></P></TD><TD class=odate align=right nowrap>
+ 1999-2000<BR></TD></TR>
+<TR><TD colspan=2><A href="http://www.trw.com/" title="TRW-Carr is a local factory of Seat Belt Systems division of TRW Automotive." target="_blank">
+ TRW-Carr s.r.o.</A><SPAN class=snote>, Stará Boleslav,&nbsp;CZ</SPAN><BR></TD>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>References:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01MJgavN3AFGU2lZgtX4GZQg==&amp;c=hZCcpjWSJNKDpau6Xu8lMg==" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501MJgavN3AFGU2lZgtX4GZQg\75\75\46c\75hZCcpjWSJNKDpau6Xu8lMg\75\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Jamal Ashraf worked closely with me. He can give references to my work.">Jamal Ashraf</A>, CFO</SPAN></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Responsible for Brain XPPS production planning and control system. Co-responsible for IT.
+ </P><UL class=inln type=square>
+ <LI>
+ Managed XPPS on AS/400, provided DB2 qrymgr/SQL data reports for F&amp;A, logistics
+ and warehouse management. Coordinated warehouse inventories with CFO.
+ <LI>
+ Co-managed Novell Netware 4.11/5.0, Novell Groupwise 5.1 and Ethernet/Token Ring network.
+ Supported NDS/Groupwise operations within TRW Global Network and WAN/EDI/RAS solutions.
+ Supported 100+ employees in 2-member team.
+ </UL></TD></TR>
+
+<TR valign=bottom><TD colspan=5><P class=h3s><B>
+ User Support Technician (Civil Service)</B></P></TD><TD class=odate align=right>
+ 1998-1999<BR></TD></TR>
+<TR><TD colspan=2><A href="http://www.vse.cz/" target="_blank">
+ University of Economics</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN><BR></TD>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>References:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=VLwIBO4a3sirRv_RUhONvw==" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75VLwIBO4a3sirRv_RUhONvw\75\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Jan Havlíček. He can give you references to my work.">Jan Havlíček</A>, Support Manager</SPAN></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Supported 1500+ employees in 3-member team.
+ </P><UL class=inln type=square>
+ <LI>
+ Installed new hardware and software,
+ reimplemented image based workstation deployment.
+ <LI>
+ Cooperated in LAN/MAN maint., Netware troubleshooting
+ and setting up a new college network.
+ </UL></TD></TR>
+
+<TR valign=bottom><TD colspan=5><P class=h3s><B>
+ Network Administrator</B></P></TD><TD class=odate align=right nowrap>
+ 1994-1997<BR></TD></TR>
+<TR><TD colspan=2><A href="http://www.billboardcz.cz/" title="Billboard-Outdoor provides a billboard advertisment network in Czech Republic." target="_blank">
+ Billboard s.r.o.</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN><BR></TD>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>References:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Šťěpán Hutla. He can give you references to my work.">Šťěpán Hutla</A>, Technical Director</SPAN></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Responsible for IT.
+ </P><UL class=inln type=square>
+ <LI>
+ Implemented and managed Novell Netware 3.12/4.11 network with Windows 3.1/95
+ clients, S&amp;M/F&amp;A applications and solutions for internet, e-mail, backup and security.
+ <LI>
+ Supervised development of campaign building client application.
+ </UL></TD></TR>
+
+<TR valign=bottom><TD colspan=5><P class=h3s><B>
+ Network Administrator (Scholarship Activity)</B></P></TD><TD class=odate align=right nowrap>
+ 1994-1995<BR></TD></TR>
+<TR><TD colspan=6><A href="http://www.mff.cuni.cz/" target="_blank">
+ Faculty of Mathematics and Physics</A>
+ at&nbsp;<A href="http://www.cuni.cz/" target="_blank">Charles&nbsp;University</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN></TD></TR>
+<TR><TD colspan=6><P class=p31>
+ Co-administered Novell Netware 3.11 computing lab network.
+ </P></TD></TR>
+
+
+
+
+<TR><TD colspan=6 nowrap><H2>Education</H2></TD></TR>
+
+<TR valign=bottom><TD colspan=6><P class=h31><B>
+ Secondary and University Education</B></P></TD></TR>
+
+<TR><TD colspan=6><P class=h41><A href="http://www.cuni.cz/zborovska/" target="_blank">
+ Gymnázium Korunní -&nbsp;Zborovská</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN></P></TD></TR>
+<TR valign=top><TD rowspan=2 nowrap><P class=oldnc>
+ Specialization:</P></TD><TD colspan=4>
+  German Language</TD><TD class=odati align=right nowrap>
+  1990-1991<BR></TD></TR>
+  <TR><TD colspan=4>
+  Mathematics</TD><TD class=odati align=right nowrap>
+  1991-1994</TD></TR>
+<TR valign=top><TD nowrap><P class=oldnc>
+ Degree earned:</P></TD><TD colspan=5>
+ Maturita (General Certificate of Education)</TD></TR>
+
+<TR><TD colspan=5 nowrap><P class=h4><A href="http://www.mff.cuni.cz/" target="_blank">
+ Faculty of Mathematics and Physics</A>
+ at&nbsp;<A href="http://www.cuni.cz/" target="_blank">Charles&nbsp;University</A><SPAN class=snote>, Prague,&nbsp;CZ</SPAN></P></TD><TD class=odate align=right>
+ 1994-1997</TD></TR>
+<TR valign=top><TD nowrap><P class=oldnc>
+ Study branch:</P></TD><TD colspan=4>
+ Master Study (MSc.) of Computer Science</TD></TR>
+<TR><TD colspan=6><P class=p3>
+ Interrupted the study in 4th semester due to time constraints with 2 half-time jobs.</P></TD></TR>
+
+
+
+<TR><TD colspan=6 nowrap><H2>Skills</H2></TD></TR>
+
+<TR><TD colspan=6><P class=h31><B>
+ Language Skills</B></P></TD></TR>
+
+<TR valign=top><TD nowrap><DIV class=oldnc>
+ Czech:</DIV></TD><TD colspan=5>
+ Native speaker<BR></TD></TR>
+<TR valign=top><TD nowrap><DIV class=oldnc>
+ English:</DIV></TD><TD colspan=5>
+ Advanced in both written and spoken language<BR></TD></TR>
+
+<TR><TD colspan=6><P class=h3><B>
+ Tech Skills</B></P></TD></TR>
+
+<TR><TD colspan=6><UL type=square>
+ <LI>
+ Python/Jython, bash/sh/ksh, Perl, PHP, C, Asm x86, BeanShell
+ <LI>
+ Hg, Git, Darcs, SVN, CVS, ClearCase
+ <LI>
+ MongoDB, PostgreSQL, MySQL, MS SQL, Sybase, DB2, SQLite
+ <LI>
+ App Engine, WSGI, nginx, Apache, JBoss/Tomcat, WebSphere
+ <LI>
+ Linux, Solaris, Novell NetWare, OS/400 and Windows servers
+ <LI>
+ Small to mid-scale Linux server/node and Windows desktop management
+ </UL></TD></TR>
+
+<TR><TD colspan=6><P class=h3><B>
+ Qualification</B></P></TD></TR>
+
+<TR><TD colspan=6><UL type=square>
+ <LI>
+ 20 years of coding and 17 years of system administration experience
+ <LI>
+ Analytic and conceptual thinking
+ <LI>
+ Deep insight into technologies of choice
+ <LI>
+ Troubleshooter, fast-learner, team player
+ </UL></TD></TR>
+
+
+
+
+<TR><TD colspan=6 nowrap><H2>Completion data</H2></TD></TR>
+
+<TR valign=top><TD nowrap><P class=oldnc>
+ Availability:</P></TD><TD colspan=5 class=otext>
+ Ready to start working immediatelly.
+ Can travel for projects.<BR></TD></TR>
+<TR valign=top><TD nowrap><P class=oldnc>
+ References:</P></TD><TD colspan=5 class=otext>
+ Contact e-mails are available online at
+ <A href="https://iki.github.com/cv" target="_blank">iki.github.com/cv</A>.<BR></TD></TR>
+<TR valign=top><TD nowrap><P class=oldnc>
+ Networks:</P></TD><TD colspan=5 class=otext>
+ <A href="https://twitter.com/jankillian" target="_blank">@jankillian</A>,
+ linkedin.com/in/<A href="http://linkedin.com/in/killian" target="_blank">killian</A>,
+ google+<A href="http://j.mp/jan-killian" target="_blank">jan.killian</A>,
+ github.com/<A href="https://github.com/iki" target="_blank">iki</A>.
+ <BR></TD></TR>
+<TR valign=top><TD nowrap><P class=oldnc>
+ Interests:</P></TD><TD colspan=5 class=otext>
+ Hiking, biking, music, books, networking, programming.<BR></TD></TR>
+
+</TABLE></CENTER></BODY></HTML>
