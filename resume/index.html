@@ -5,7 +5,7 @@ Used to HTML5?
 
 Advance carefully, then.
 
-This is an indigenous table layout discovered in last millenium.
+This is an indigenous table layout with non-semantic styles from last millenium.
 
 Eye/brain hurting effect is almost inevitable ;)
 
@@ -92,22 +92,16 @@ ul  {       /* base.list-of-items */
     margin:     0em 0em 0em 3em;
     padding:    0em;
     list-style: square outside;
-    page-break-before: never;
-    page-break-inside: never;
     }
 ul.inln {       /* base.list-of-items.inline */
     margin:     0.4em 0em 0em 3em;
     padding:    0em;
     list-style: square outside;
-    page-break-before: never;
-    page-break-inside: never;
     }
 ul.inner {       /* base.list-of-items.inline */
     margin:     0em;
     padding:    0em;
     list-style: square outside;
-    page-break-before: never;
-    page-break-inside: never;
     }
 li  {       /* base.listitem */
     font-family:    verdana, "arial CE", "helvetica CE", arial, helvetica;
@@ -120,81 +114,65 @@ li  {       /* base.listitem */
 h1  {       /* level-1.header */
     font-family:    verdana, "arial CE", "helvetica CE", arial, helvetica;
     font-weight:    normal;
-    font-size:  200%;
+    font-size:  220%;
     text-decoration:none;
     letter-spacing: 0.8em;
     margin:     0em;
     padding:    0em 1em 1em 0em;
-    page-break-after: never;
     }
 h2  {       /* level-2.header */
     font-family:    verdana, "arial CE", "helvetica CE", arial, helvetica;
     font-weight:    normal;
-    font-size:  150%;
+    font-size:  170%;
     text-decoration:none;
     letter-spacing: 0.5em;
     margin:     0em;
     padding:    1.62em 0em 1em 0em;
-    page-break-after: never;
     }
 p.h3 {       /* level-3.header */
     font-weight:    bold;
+    font-size:  120%;
     padding:    1.62em 1em 1em 0em;
-    page-break-after: never;
-    page-break-inside: never;
     }
 p.h31   {       /* level-3.header.first */
     font-weight:    bold;
+    font-size:  120%;
     padding:    0em 1em 1em 0em;
-    page-break-after: never;
-    page-break-inside: never;
     }
 p.h3s   {       /* level-3.header.with-subheader */
     font-weight:    bold;
+    font-size:  120%;
     padding:    1.62em 1em 0em 0em;
-    page-break-after: never;
-    page-break-inside: never;
     }
 p.h3s1  {       /* level-3.header.with-subheader.first */
     font-weight:    bold;
+    font-size:  120%;
     padding:    0em 1em 0em 0em;
-    page-break-after: never;
-    page-break-inside: never;
     }
 p.h4 {       /* level-4.header */
-    padding:    0.3em 1em 0em 0em;
-    page-break-after: never;
-    page-break-inside: never;
+    padding:    0.7em 1em 0.3em 0em;
     }
 p.h41   {       /* level-4.header.first */
-    padding:    0em 1em 0em 0em;
-    page-break-after: never;
-    page-break-inside: never;
+    padding:    0em 1em 0.3em 0em;
     }
 p.p21   {       /* level-2.paragraph.first */
     text-align: justify;
     text-indent:    3em;
-    page-break-after: never;
-    page-break-inside: never;
     }
 p.p2 {       /* level-2.paragraph */
     text-align: justify;
     text-indent:    3em;
     padding:    0.3em 0em 0em 0em;
-    page-break-inside: never;
     }
 p.p31   {       /* level-3.paragraph.first */
     text-align: justify;
     text-indent:    3em;
     padding:    0.3em 0em 0em 0em;
-    page-break-after: never;
-    page-break-inside: never;
     }
 p.p3 {       /* level-3.paragraph */
     text-align: justify;
     text-indent:    3em;
     padding:    0em;
-    page-break-inside: never;
     }
 .ohdca  {       /* object.document-header.contact */
     font-size:  80%;
@@ -243,6 +221,39 @@ p.p3 {       /* level-3.paragraph */
     color:      #004080;
     background: transparent none;
     }
+.b0 {       /* block.start */
+    display: block !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    -webkit-region-break-inside: avoid;
+    -webkit-region-break-after: avoid;
+    }
+.b1 {       /* block.inside */
+    display: block !important;
+    page-break-before: avoid;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    -webkit-region-break-before: avoid;
+    -webkit-region-break-inside: avoid;
+    -webkit-region-break-after: avoid;
+    }
+.b2 {       /* block.end */
+    display: block !important;
+    page-break-before: avoid;
+    page-break-inside: avoid;
+    -webkit-region-break-before: avoid;
+    -webkit-region-break-inside: avoid;
+    }
+.b3 {       /* block.standalone */
+    display: block !important;
+    page-break-inside: avoid;
+    -webkit-region-break-inside: avoid;
+    }
+.b4 {       /* block.newpage */
+    display: block !important;
+    page-break-before: always !important;
+    -webkit-region-break-before: always !important;
+    }
 @media print {
 body    {       /* base.body */
     font-family:    verdana, "arial CE", "helvetica CE", arial, helvetica;
@@ -250,16 +261,16 @@ body    {       /* base.body */
     background: #FFFFFF none;
     }
 .oprno  {       /* object.print.not */
-    display:    none;
+    display:    none !important;
     }
-    }
+}
 --></STYLE>
 
 <BODY bgcolor="#E8F0FF" text="#000000" link="#004080" vlink="#004080" alink="#004080">
 <!-- vlink=#40A0A0 -->
 <CENTER><TABLE width=600 border=0 cellspacing=0 cellpadding=0>
 
-<TR valign=top><TD colspan=4 nowrap><H1>
+<TR valign=top><TD class=b0 colspan=4 nowrap><H1>
  Jan Killian</H1></TD><TD colspan=2 align=right nowrap><DIV class=ohdca>
  <A rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Fill the 4 missing surname letters, or click to reveal.">jan.kil....@gmail.com</A>,
  +420-776-0-776-76<BR>
@@ -270,91 +281,96 @@ body    {       /* base.body */
  </TD></TR>
 
 <TR>
- <TD width="25%" nowrap>&nbsp;</TD>
- <TD width="25%" nowrap>&nbsp;</TD>
- <TD width="10%" nowrap>&nbsp;</TD>
- <TD width="10%" nowrap>&nbsp;</TD>
- <TD width="10%" nowrap>&nbsp;</TD>
- <TD width="20%" nowrap>&nbsp;</TD></TR>
+ <TD class=b1 width="25%" nowrap>&nbsp;</TD>
+ <TD class=b1 width="25%" nowrap>&nbsp;</TD>
+ <TD class=b1 width="10%" nowrap>&nbsp;</TD>
+ <TD class=b1 width="10%" nowrap>&nbsp;</TD>
+ <TD class=b1 width="10%" nowrap>&nbsp;</TD>
+ <TD class=b1 width="20%" nowrap>&nbsp;</TD>
+ </TR>
 
-<TR><TD colspan=6><P class=p21>
+<TR><TD class=b2 colspan=6><P class=p21>
  <EM>First make it <B>work</B>. Then, make it <B>beautiful</B>. Then, make it <B>fast</B>.</EM>
- ~ adapted from <A title="Become Efficient or Die: The Story of BackType" href="http://www.slideshare.net/nathanmarz/become-efficient-or-die-the-story-of-backtype">BackType</A>
+ <SPAN class=snote>&mdash; <A title="Become Efficient or Die: The Story of BackType" href="http://www.slideshare.net/nathanmarz/become-efficient-or-die-the-story-of-backtype" target=_blank>BackType</A></SPAN>
  </P></TD></TR>
 
-<!--
-<TR><TD colspan=6 nowrap><H2>Personal Data</H2></TD></TR>
+<TR class=b0><TD colspan=6 nowrap><H2>About</H2></TD></TR>
 
-<TR valign=top><TD nowrap><DIV class=oldnc>
- Date of birth:
-   </DIV></TD><TD nowrap>
- Dec 23rd 1975
-   <BR></TD><TD colspan=4 rowspan=3></TD></TR><TR valign=top><TD nowrap><DIV class=oldnc>
- Citizenship:</DIV>
-   </TD><TD nowrap>
- Czech Republic, EU
-   <BR></TD><TD colspan=4 rowspan=3></TD></TR><TR valign=top><TD nowrap><DIV class=oldnc>
- Nationality:
-   </DIV></TD><TD nowrap>
- Czech
-   <BR></TD></TR>
-
--->
-
-<TR><TD colspan=6 nowrap><H2>About</H2></TD></TR>
-
-<TR><TD colspan=6><P class=p21>
+<TR><TD class=b1 colspan=6><P class=p21>
  Working on projects to meet people, take on challenges, build things and learn.
  </P><P class=p2>
  You can find me on
- linkedin.com/in/<A href="http://linkedin.com/in/killian" target="_blank">killian</A>,
- github.com/<A href="https://github.com/iki" target="_blank">iki</A>,
- <A href="https://plus.google.com/106285225234349311942/posts" target="_blank">+jankillian</A>
+ <A href="http://linkedin.com/in/killian" target="_blank">linkedin.com/in/killian</A>,
+ <A href="https://github.com/iki" target="_blank">github.com/iki</A>,
+ <A href="https://plus.google.com/+JanKillian/posts" target="_blank">+jankillian</A>,
  and <A href="https://twitter.com/jankillian" target="_blank">@jankillian</A>.
  </P><P class=p2>
  I'm a citizen of Czech Republic and EU, born in 1975.
  </P></TD></TR>
 
 
-<TR><TD colspan=6 nowrap><H2>Skills</H2></TD></TR>
+<TR class=b0><TD colspan=6 nowrap><H2>Skills</H2></TD></TR>
 
 <TR valign=top><TD nowrap class><DIV class=oldnc>
  Focus:</DIV></TD><TD colspan=5><UL class=inner type=square>
- <LI><B>Python</B>, <B>Django</B>, <B>Google App Engine</B>, <B>Google Apps</B>
- <LI>API design, NoSQL/SQL data modelling, code/service architecture
- <LI>Web application security and response time optimization
- <LI>Javascript, CoffeeScript, AngularJS
- <LI>HTML5+CSS3, H5BP, Twitter Bootstrap, Sass/Less, Shapml/Haml
+ <LI><B>AngularJS</B>, <B>React.js</B>, Node.js, JavaScript, CoffeeScript
+ <LI><B>REST API</B> design, <B>Python</B>, Flask, Django, Google App Engine
+ <LI><B>NoSQL/SQL</B> data modelling, MongoDB, PostgreSQL, MySQL, Redis
+ <LI>web application <B>security</B> and <B>page speed</B> optimization
+ <LI>responsive/mobile HTML5/CSS3, Twitter Bootstrap, Less/Sass, Jade
  </UL></TD></TR>
 
-<TR class=block valign=top><TD nowrap class><DIV class=oldnc>
+<TR class=block valign=top><TD nowrap><DIV class=oldnc>
  Background:</DIV></TD><TD colspan=5><UL class=inner type=square>
- <LI>bash/sh/ksh, Jython, Java, Beanshell, Perl, PHP, C, Asm x86
- <LI>MongoDB, memcached, PostgreSQL, MySQL, DB2, SQLite
- <LI>Flask, Webapp2, WSGI, Apache, nginx, JBoss, Tomcat, WebSphere
+ <LI>bash/sh/ksh, Perl, PHP, C, Jython, Beanshell, Java, Asm x86
  <LI>Linux, Novell NetWare, OS/400 and Windows servers
  <LI>Small to mid-scale Linux server/node and Windows desktop management
  </UL></TD></TR>
 
-<TR class=block valign=top><TD nowrap class><DIV class=oldnc>
+<TR class=block valign=top><TD nowrap><DIV class=oldnc>
  Talents:</DIV></TD><TD colspan=5>
  Analytic and conceptual thinker, explorer, troubleshooter, team player<BR></TD></TR>
 
-<TR class=block valign=top><TD nowrap class><DIV class=oldnc>
+<TR class=block valign=top><TD nowrap><DIV class=oldnc>
  Languages:</DIV></TD><TD colspan=5>
  Czech (native), English (advanced)<BR></TD></TR>
 
 
 
-<TR><TD colspan=6 nowrap><H2>Experience</H2></TD></TR>
+<TR class=b0><TD colspan=6 nowrap><H2>Experience</H2></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s1><B>
- Head of software development</B></P></TD><TD class=odate align=right nowrap>
+<TR valign=bottom><TD class=b1 colspan=5><P class=h3s1><B>
+ Software developer</B></P></TD><TD class=odate align=right nowrap>
+ since 2013<BR></TD></TR>
+<TR><TD class=b1 colspan=2 nowrap><A href="http://www.salsitasoft.com/" title="Salsita Software delivers state-of-the-art web applications engineering for clients around the world." target="_blank">
+ Salsita Software</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/in/romankaspar" title="Roman managed projects I worked on. He can give you references to my work.">Roman Kaspar</A>, Director of Engineering</SPAN></TD></TR>
+<TR><TD class=b2 colspan=6><P class=p31>
+ Developing web applications and API's with AngularJS, Flask/Django, and NoSQL+SQL databases.
+ </P><UL class=inln type=square>
+ <LI>
+ Developing Python/Flask/MySQL/MongoDB backend for Balfour Reporting.
+ <LI>
+ Maintaining Salsita's development stack and generator for AngularJS + Node.js/Python projects.
+ <LI>
+ Developed AngularJS core for
+ <A href="https://www.salsitasoft.com/clients/client-projects/smartbear" target="_blank">SmartBear</A>
+ SaaS platform and AlertSite service on top of it.
+ <SPAN class=oprno class=snote><BR>&mdash;&nbsp;<A href="https://www.salsitasoft.com/clients/client-projects/smartbear" target="_blank">client&nbsp;testimonial</A></SPAN>
+ <LI>
+ Developed mobile HTML5 AngularJS apps for
+ <A href="https://www.salsitasoft.com/clients/client-projects/monterosa" target="_blank">Monterosa</A>
+ and major british TV's.
+ <SPAN class=oprno class=snote> &mdash;&nbsp;<A href="https://www.salsitasoft.com/clients/client-projects/monterosa" target="_blank">client&nbsp;testimonial</A></SPAN>
+ </UL></TD></TR>
+
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
+ Head of Software Development</B></P></TD><TD class=odate align=right nowrap>
  2012-2013<BR></TD></TR>
-<TR><TD colspan=2 nowrap><A href="http://www.netmail.cz/" title="Netmail helps businesses to move in the cloud and leads Google Apps implementations in Czech Republic." target="_blank">
+<TR><TD class=b1 colspan=2 nowrap><A href="http://www.netmail.cz/" title="Netmail helps businesses to move in the cloud and leads Google Apps implementations in Czech Republic." target="_blank">
  Netmail</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
- <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/in/bohuslavdohnal" title="I did report to Bohuslav. He can give you references to my work.">Bohuslav Dohnal</A>, Managing director</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/in/bohuslavdohnal" title="Bohuslav managed projects I worked on. He can give you references to my work.">Bohuslav Dohnal</A>, Managing Director</SPAN></TD></TR>
+<TR><TD class=b2 colspan=6><P class=p31>
  Lead development projects using Google App Engine and Google Apps.
  </P><UL class=inln type=square>
  <LI>
@@ -367,13 +383,13 @@ body    {       /* base.body */
  Synchronized users, calendars, documents and document changes.
  </UL></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s><B>
- Freelance/Startup Developer</B></P></TD><TD class=odate align=right nowrap>
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
+ Software Developer</B></P></TD><TD class=odate align=right nowrap>
  2010-2011<BR></TD></TR>
-<TR><TD colspan=2 nowrap><A href="http://www.terraio.com/" title="Terraio - QR Advertisment, Analytics and User network management." target="_blank">
+<TR><TD class=b1 colspan=2 nowrap><A href="http://www.terraio.com/" title="Terraio - QR Advertisment, Analytics and User network management." target="_blank">
  Terraio</A> startup + multiple clients<!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
- <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/in/tomby" title="I worked on Terraio with Tomáš Bílý and group of researchers at Faculty of Mathematics and Physics at Charles University (MFF UK). Tomáš can give you references to my work.">Tomáš Bílý</A>, MFF UK Researcher&amp;Developer</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/in/tomby" title="Tomáš Bílý lead group of researchers working on Terraio at Faculty of Mathematics and Physics at Charles University (MFF UK). He can give you references to my work.">Tomáš Bílý</A>, MFF UK Researcher and Developer</SPAN></TD></TR>
+<TR><TD class=b2 colspan=6><P class=p31>
  Developed projects using Python, Linux and Google App Engine.
  </P><UL class=inln type=square>
  <LI>
@@ -387,13 +403,15 @@ body    {       /* base.body */
  Prototyped Google App Engine Python backend for QR based advertisment monitoring and gaming platform.
  </UL></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s><B>
- Developer/Specialist</B></P></TD><TD class=odate align=right nowrap>
+<!-- <TR><TD><DIV style="page-break-after: always" clear=all>&nbsp;</DIV></TD></TR> <!-- quickfix for Opera 12 table printing issue -->
+
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
+ Software Developer</B></P></TD><TD class=odate align=right nowrap>
  2005-2009<BR></TD></TR>
-<TR><TD colspan=2 nowrap><A href="http://www.commerzbank.cz/" title="The development centre in Prague was started in 2005 and brought agile development methods to the company." target="_blank">
+<TR><TD class=b1 colspan=2 nowrap><A href="http://www.commerzbank.cz/" title="The development centre in Prague was started in 2005 and brought agile development methods to the company." target="_blank">
  Commerzbank</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
- <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/in/ryanseanmcgloin" title="I did report to Ryan McGloin on infrastructure and maintenance projects. He can give you references to my work. ADS stands for Adaptive Development Services.">Ryan McGloin</A>, Local Head ADS</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/in/ryanseanmcgloin" title="Ryan McGloin managed infrastructure and maintenance projects I worked on. He can give you references to my work. ADS stands for Adaptive Development Services.">Ryan McGloin</A>, Local Head ADS</SPAN></TD></TR>
+<TR><TD class=b2 colspan=6><P class=p31>
  Took part in an agile development process wherever IT interdisciplinary skills were needed.
  </P><UL class=inln type=square>
  <LI>
@@ -408,15 +426,13 @@ body    {       /* base.body */
  Co-developed the Application Security Test Concept.
  </UL></TD></TR>
 
-<!-- <DIV style="page-break-before: always" clear=all>&nbsp;</DIV> <!-- quickfix for Opera 12 table printing issue -->
-
-<TR style="page-break-before: always" valign=bottom ><TD colspan=5><P class=h3s><B>
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
  IT&amp;eB Executive</B></P></TD><TD class=odate align=right nowrap>
  2002-2004<BR></TD></TR>
-<TR><TD colspan=2 nowrap><A href="http://www.wyeth.com/" title="Wyeth Czech is a local office of major worldwide pharmaceutical company, acquired by Pfizer in October 2009." target="_blank">
+<TR><TD class=b1 colspan=2 nowrap><A href="http://www.wyeth.com/" title="Wyeth Czech is a local office of major worldwide pharmaceutical company, acquired by Pfizer in October 2009." target="_blank">
  Wyeth</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
- <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=Yj_3CIiQJiTJO_gpAUnKIqDXJh_Q2v0cUkl-LIoJAO8=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75Yj_3CIiQJiTJO_gpAUnKIqDXJh_Q2v0cUkl-LIoJAO8\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Vladimír Chmela. He can give you references to my work.">Vladimír Chmela</A>, CFO</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+ <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="https://www.linkedin.com/pub/vladimir-chmela/87/63/a55" title="I did report to Vladimír Chmela. He can give you references to my work.">Vladimír Chmela</A>, CFO</SPAN></TD></TR>
+<TR><TD class=b2 colspan=6><P class=p31>
  Responsible for IT of Czech branch in a global network.
  </P><UL class=inln type=square>
  <LI>
@@ -431,13 +447,13 @@ body    {       /* base.body */
  infrastructure upgrade and country intranet setup.
  </UL></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s><B>
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
  Network Administrator</B></P></TD><TD class=odate align=right nowrap>
  1996-2002<BR></TD></TR>
-<TR><TD colspan=2 nowrap><A href="http://www.hmedia.cz/" title="H-Media provides an in-board healthcare advertisment network in Czech Republic." target="_blank">
+<TR><TD class=b1 colspan=2 nowrap><A href="http://www.hmedia.cz/" title="H-Media provides an in-board healthcare advertisment network in Czech Republic." target="_blank">
  H-Media</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
  <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Michal Ouzký. He can give you references to my work. Write in Czech please.">Michal Ouzký</A>, Technical Manager</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+<TR><TD class=b2 colspan=6><P class=p31>
  Responsible for IT.
  </P><UL class=inln type=square>
  <LI>
@@ -449,13 +465,13 @@ body    {       /* base.body */
  and profiles automatically delivered from network.
  </UL></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s><B>
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
  MIS Technician</B></P></TD><TD class=odate align=right nowrap>
  1999-2000<BR></TD></TR>
-<TR><TD colspan=2><A href="http://www.trw.com/" title="TRW-Carr is a local factory of Seat Belt Systems division of TRW Automotive." target="_blank">
+<TR><TD class=b1 colspan=2><A href="http://www.trw.com/" title="TRW-Carr is a local factory of Seat Belt Systems division of TRW Automotive." target="_blank">
  TRW</A><!-- <SPAN class=snote>, Stará Boleslav,&nbsp;CZ</SPAN>--><BR></TD>
  <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01MJgavN3AFGU2lZgtX4GZQg==&amp;c=hZCcpjWSJNKDpau6Xu8lMg==" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501MJgavN3AFGU2lZgtX4GZQg\75\75\46c\75hZCcpjWSJNKDpau6Xu8lMg\75\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Jamal Ashraf worked closely with me. He can give references to my work.">Jamal Ashraf</A>, CFO</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+<TR><TD class=b2 colspan=6><P class=p31>
  Responsible for Brain XPPS production planning and control system. Co-responsible for IT.
  </P><UL class=inln type=square>
  <LI>
@@ -467,13 +483,13 @@ body    {       /* base.body */
  <!-- Supported 100+ employees in 2-member team. -->
  </UL></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s><B>
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
  User Support Technician (Civil Service)</B></P></TD><TD class=odate align=right>
  1998-1999<BR></TD></TR>
-<TR><TD colspan=2><A href="http://www.vse.cz/" target="_blank">
+<TR><TD class=b1 colspan=2><A href="http://www.vse.cz/" target="_blank">
  University of Economics</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
  <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl target=blank href="http://www.linkedin.com/pub/jan-havlicek/5/772/42a" title="I did report to Jan Havlíček. He can give you references to my work.">Jan Havlíček</A>, Support Manager</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+<TR><TD class=b2 colspan=6><P class=p31>
  Supported 1500+ employees in 3-member team.
  </P><UL class=inln type=square>
  <LI>
@@ -484,13 +500,13 @@ body    {       /* base.body */
  and setting up a new college network.
  </UL></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s><B>
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
  Network Administrator</B></P></TD><TD class=odate align=right nowrap>
  1994-1997<BR></TD></TR>
-<TR><TD colspan=2><A href="http://www.billboardcz.cz/" title="Billboard-Outdoor provides a billboard advertisment network in Czech Republic." target="_blank">
+<TR><TD class=b1 colspan=2><A href="http://www.billboardcz.cz/" title="Billboard-Outdoor provides a billboard advertisment network in Czech Republic." target="_blank">
  Billboard</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --><BR></TD>
  <TD colspan=4 class=orefc align=right><SPAN class=srefc>Ref:</SPAN>&nbsp;<SPAN class=srefc><A class=srefl rel=nofollow href="http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="I did report to Šťěpán Hutla. He can give you references to my work.">Šťěpán Hutla</A>, Technical Director</SPAN></TD></TR>
-<TR><TD colspan=6><P class=p31>
+<TR><TD class=b2 colspan=6><P class=p31>
  Responsible for IT.
  </P><UL class=inln type=square>
  <LI>
@@ -500,43 +516,43 @@ body    {       /* base.body */
  Supervised development of campaign building client application.
  </UL></TD></TR>
 
-<TR valign=bottom><TD colspan=5><P class=h3s><B>
+<TR valign=bottom><TD class=b0 colspan=5><P class=h3s><B>
  Network Administrator (Scholarship Activity)</B></P></TD><TD class=odate align=right nowrap>
  1994-1995<BR></TD></TR>
-<TR><TD colspan=6><A href="http://www.mff.cuni.cz/" target="_blank">
+<TR><TD class=b1 colspan=6><A href="http://www.mff.cuni.cz/" target="_blank">
  Faculty of Mathematics and Physics</A>
  at&nbsp;<A href="http://www.cuni.cz/" target="_blank">Charles&nbsp;University</A> (MFF&nbsp;UK)<!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --></TD></TR>
-<TR><TD colspan=6><P class=p31>
+<TR><TD class=b2 colspan=6><P class=p31>
  Co-administered Novell Netware 3.11 computing lab network.
  </P></TD></TR>
 
 
+<!-- <TR><TD><DIV style="page-break-after: always" clear=all>&nbsp;</DIV></TD></TR> <!-- quickfix for Opera 12 table printing issue -->
 
+<TR class=b0><TD colspan=6 nowrap><H2>Education</H2></TD></TR>
 
-<TR><TD colspan=6 nowrap><H2>Education</H2></TD></TR>
-
-<TR valign=bottom><TD colspan=6><P class=h31><B>
+<TR class=b1 valign=bottom><TD colspan=6><P class=h31><B>
  Secondary and University Education</B></P></TD></TR>
 
-<TR><TD colspan=6><P class=h41><A href="http://www.cuni.cz/zborovska/" target="_blank">
+<TR><TD class=b1 colspan=6><P class=h41><A href="http://www.cuni.cz/zborovska/" target="_blank">
  Gymnázium Korunní -&nbsp;Zborovská</A><!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --></P></TD></TR>
-<TR valign=top><TD rowspan=2 nowrap><P class=oldnc>
+<TR valign=top><TD class=b1 rowspan=2 nowrap><P class=oldnc>
  Specialization:</P></TD><TD colspan=4>
   German Language</TD><TD class=odati align=right nowrap>
   1990-1991<BR></TD></TR>
   <TR><TD colspan=4>
   Mathematics</TD><TD class=odati align=right nowrap>
   1991-1994</TD></TR>
-<TR valign=top><TD nowrap><P class=oldnc>
+<TR valign=top><TD class=b2 nowrap><P class=oldnc>
  Degree earned:</P></TD><TD colspan=5>
  Maturita (General Certificate of Education)</TD></TR>
 
-<TR><TD colspan=5 nowrap><P class=h4><A href="http://www.mff.cuni.cz/" target="_blank">
+<TR><TD class=b0 colspan=5 nowrap><P class=h4><A href="http://www.mff.cuni.cz/" target="_blank">
  Faculty of Mathematics and Physics</A>
  at&nbsp;<A href="http://www.cuni.cz/" target="_blank">Charles&nbsp;University</A> (MFF&nbsp;UK)<!-- <SPAN class=snote>, Prague,&nbsp;CZ</SPAN> --></P></TD><TD class=odate align=right>
  1994-1997</TD></TR>
-<TR valign=top><TD nowrap><P class=oldnc>
+<TR valign=top><TD class=b1 nowrap><P class=oldnc>
  Study branch:</P></TD><TD colspan=4>
  Master Study (MSc.) of Computer Science</TD></TR>
-<TR><TD colspan=6><P class=p3>
+<TR valign=top><TD class=b2 colspan=6><P class=p3>
  Interrupted the study in 4th semester due to time constraints with 2 half-time jobs.</P></TD></TR>
