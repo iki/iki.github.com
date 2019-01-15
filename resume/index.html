@@ -7,10 +7,10 @@ Advance carefully, then.
 
 This is a native table layout from last millenium.
 
-Eye/brain hurting effect is almost inevitable ;)
+Eye/brain hurt effect is almost inevitable ;)
 
 -->
-<html prefix="og: http://ogp.me/ns#">
+<html prefix="og: https://ogp.me/ns#">
 <head>
   <meta name="generator" content="HTML Tidy for HTML5 for Windows version 5.4.0">
   <meta name="Description" lang="en" content="Resume of Jan Killian">
@@ -21,7 +21,7 @@ Eye/brain hurting effect is almost inevitable ;)
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <meta property="og:title" content="Resume of Jan Killian">
   <meta property="og:description" content="Online Resume for Viewing and Printing">
-  <meta property="og:url" content="https://iki.github.io/resume/">
+  <meta property="og:url" content="https://iki.github.io/resume">
   <!-- 180x110 Image for Linkedin -->
   <meta property="og:image" content="//iki.github.io/resume/resume-thumbnail-180x110.jpg">
   <meta property="og:image:width" content="180">
@@ -50,12 +50,12 @@ Eye/brain hurting effect is almost inevitable ;)
       /* color: #004080; */
       background: transparent none;
     }
-    a:hover {
+    a:hover, a:hover .note {
       color: #E7A7A2;
       /* color: #FF0000; */
       background: transparent none;
     }
-    a:active {
+    a:active, a:active .note {
       color: #000000;
       background: #5AB4DA none;
       /* color: #FAF7F0; */
@@ -86,9 +86,18 @@ Eye/brain hurting effect is almost inevitable ;)
       font-weight: normal;
       text-align: left;
       vertical-align: top;                    /* inlelmatr */
+
+      page-break-before: avoid;
+      page-break-inside: avoid;
+      page-break-after: avoid;
+      -webkit-region-break-before: avoid;
+      -webkit-region-break-inside: avoid;
+      -webkit-region-break-after: avoid;
     }
-    tr.block td {
+    .block td {
       padding: 1em 0em 0em 0em;
+      page-break-inside: avoid;
+      -webkit-region-break-inside: avoid;
     }
     p {
       font-family: verdana, "arial CE", "helvetica CE", arial, helvetica;
@@ -201,29 +210,21 @@ Eye/brain hurting effect is almost inevitable ;)
     .reference span {
       font-size: 80%;
     }
-    .block-start {
+    .block-start, .block-start td {
+      page-break-before: auto;
       page-break-inside: avoid;
       page-break-after: avoid;
+      -webkit-region-break-before: auto;
       -webkit-region-break-inside: avoid;
       -webkit-region-break-after: avoid;
     }
-    .block-inside {
+    .block-end, .block-end td {
       page-break-before: avoid;
       page-break-inside: avoid;
-      page-break-after: avoid;
+      page-break-after: auto;
       -webkit-region-break-before: avoid;
       -webkit-region-break-inside: avoid;
-      -webkit-region-break-after: avoid;
-    }
-    .block-end {
-      page-break-before: avoid;
-      page-break-inside: avoid;
-      -webkit-region-break-before: avoid;
-      -webkit-region-break-inside: avoid;
-    }
-    .block-standalone {
-      page-break-inside: avoid;
-      -webkit-region-break-inside: avoid;
+      -webkit-region-break-after: auto;
     }
     .block-newpage {
       page-break-before: always !important;
@@ -252,8 +253,8 @@ Eye/brain hurting effect is almost inevitable ;)
 </head>
 <body>
   <table width="600" border="0" cellspacing="0" cellpadding="0">
-    <tr valign="top">
-      <td class="block-start" colspan="4" nowrap>
+    <tr class="block-start" valign="top">
+      <td colspan="4" nowrap>
         <h1>
           Jan Killian
         </h1>
@@ -261,9 +262,9 @@ Eye/brain hurting effect is almost inevitable ;)
       <td colspan="2" nowrap>
         <div class="contact">
           <a rel="nofollow" href=
-          "http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E="
+          "https://google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E="
           onclick=
-          "window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
+          "window.open('https://google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
           title="Fill the 4 missing surname letters, or click to reveal.">jan.kil....@gmail.com</a>,
           +420-776-0-776-76<br>
           20&nbsp;Sokolská&nbsp;St., Prague&nbsp;2, 120&nbsp;00,&nbsp;CZ
@@ -276,58 +277,60 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" width="25%" nowrap>
+      <td width="25%" nowrap>
         &nbsp;
       </td>
-      <td class="block-inside" width="25%" nowrap>
+      <td width="25%" nowrap>
         &nbsp;
       </td>
-      <td class="block-inside" width="10%" nowrap>
+      <td width="10%" nowrap>
         &nbsp;
       </td>
-      <td class="block-inside" width="10%" nowrap>
+      <td width="10%" nowrap>
         &nbsp;
       </td>
-      <td class="block-inside" width="10%" nowrap>
+      <td width="10%" nowrap>
         &nbsp;
       </td>
-      <td class="block-inside" width="20%" nowrap>
+      <td width="20%" nowrap>
         &nbsp;
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p21">
           <em>First make it <b>work</b>. Then, make it <b>beautiful</b>. Then, make it <b>fast</b>.</em>
           <span class="note">— <a title="Become Efficient or Die: The Story of BackType" href=
-          "http://www.slideshare.net/nathanmarz/become-efficient-or-die-the-story-of-backtype" target=
+          "https://slideshare.net/nathanmarz/become-efficient-or-die-the-story-of-backtype" target=
           "_blank">BackType</a></span>
         </p>
       </td>
     </tr>
-    <tr class="block-start">
+    <tr>
       <td colspan="6" nowrap>
         <h2>
           About
         </h2>
       </td>
     </tr>
-    <tr>
-      <td class="block-inside" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p21">
           Working on projects to meet people, take on challenges, build things and learn.
         </p>
         <p class="p2">
-          You can find me on <a href="http://linkedin.com/in/killian" target="_blank">linkedin.com/in/killian</a>,
-          <a href="https://github.com/iki" target="_blank">github.com/iki</a>, <a href=
-          "https://plus.google.com/+JanKillian/posts" target="_blank">+jankillian</a>, and <a href=
-          "https://twitter.com/jankillian" target="_blank">@jankillian</a>.
+          You can find me on
+          <a href="https://linkedin.com/in/killian" target="_blank">linkedin.com/in/killian</a>,
+          <a href="https://github.com/iki" target="_blank">github.com/iki</a>,
+          <!-- <a href="https://plus.google.com/+JanKillian/posts" target="_blank">+jankillian</a>, -->
+          and <a href="https://twitter.com/jankillian" target="_blank">@jankillian</a>.
         </p>
         <p class="p2">
           I'm a citizen of Czech Republic and EU, born in 1975.
         </p>
       </td>
     </tr>
+
     <tr class="block-start">
       <td colspan="6" nowrap>
         <h2>
@@ -344,15 +347,16 @@ Eye/brain hurting effect is almost inevitable ;)
       <td colspan="5">
         <ul class="inner" type="square">
           <li>
-            <b>JavaScript</b> Frontend: <b>React</b>/Redux, <b>Angular</b>, ES2017/TypeScript
+            <b>JavaScript</b> Frontend: <b>React</b>/Redux/Apollo, ES/TypeScript, data visualization
           </li>
           <li>
-            <b>Python</b> Backend: <b>Flask</b>, <b>Google App Engine</b>, Graphene, SQLAlchemy
+            <b>Python</b> Backend:  <b>Flask</b>/<b>Graphene</b>, Google App Engine/GCP, data processing
           </li>
           <li>
-            <b>API</b> design: <b>GraphQL</b>, <b>REST</b>, Swagger, RAML, Apiary
+            <b>SQL</b>/<b>NoSQL</b> data modelling, <b>GraphQL</b>/<b>REST</b> API design and testing
           </li>
-          <li>Web application security and page speed optimization
+          <li>
+            <b>Docker</b>/<b>K8S</b>, GitLab CI/CD, web application security, page speed optimization
           </li>
         </ul>
       </td>
@@ -365,9 +369,9 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
       <td colspan="5">
         <ul class="inner" type="square">
-          <li>GAE DataStore, Redis, MySQL, PostgreSQL, MongoDB, Sybase, IBM DB2
+          <li>PostgreSQL, MySQL, MongoDB, Redis, GAE DataStore, Sybase, IBM DB2
           </li>
-          <li>Bash/sh/ksh, Perl, PHP, C, Jython, Beanshell, Java, Asm x86
+          <li>Shell, C, Java, Jython, PHP, Perl, Asm x86
           </li>
           <li>Linux, Novell NetWare, OS/400 and Windows servers
           </li>
@@ -384,7 +388,7 @@ Eye/brain hurting effect is almost inevitable ;)
         Analytic and conceptual thinker, explorer, troubleshooter, team player<br>
       </td>
     </tr>
-    <tr class="block" valign="top">
+    <tr class="block block-end" valign="top">
       <td nowrap>
         <div class="topic">
           Languages:
@@ -394,7 +398,8 @@ Eye/brain hurting effect is almost inevitable ;)
         Czech (native), English (advanced)<br>
       </td>
     </tr>
-    <tr class="block-start">
+
+    <tr>
       <td colspan="6" nowrap>
         <h2>
           Experience
@@ -402,37 +407,81 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr valign="bottom">
-      <td class="block-inside" colspan="5">
+      <td colspan="5">
         <p class="h3s1">
           <b>Software Engineer</b>
         </p>
       </td>
       <td class="date" nowrap>
-        since 2016<br>
+        2017-2018<br>
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2" nowrap>
-        <a href="http://www.stories.bi/" title=
-        "Salsita Software delivers state-of-the-art web applications engineering for clients around the world."
-        target="_blank">Stories &ndash;&nbsp;Business&nbsp;Intelligence</a> <!-- <span class=note>, remotely from&nbsp;Mexico</span> --><br>
+      <td colspan="2" nowrap>
+        <a href="http://digital.pwc.ch" title=
+        "The Experience Center delivers rapid agile application prototypes based on modern technologies."
+        target="_blank">PwC <span class=note>&mdash;&nbsp;The&nbsp;Experience&nbsp;Center (Digital&nbsp;Accelerator)</note></a>
+        <br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a target="blank" href=
-        "https://www.linkedin.com/in/peterfedorocko" title=
+        "https://linkedin.com/in/andreasleicher" title=
+        "Andreas managed projects I worked on. He can give you references to my work.">Andreas Leicher</a>, Agile Architect</span>
+      </td>
+    </tr>
+    <tr class="block-end">
+      <td colspan="6">
+        <p class="p31">
+          Developed rapid agile applications in a full-remote team.
+        </p>
+        <ul class="inline" type="square">
+          <li>Co-developed frontends in React/GraphQL/Recharts/MUI, and in Swift/ARKit/GraphQL for iOS.
+          </li>
+          <li>Co-developed Python/PubSub/MongoDB DP/ML pipeline, project blueprints, GraphQL API tests.
+          </li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
+        <p class="h3s">
+          <b>Software Engineer</b>
+        </p>
+      </td>
+      <td class="date" nowrap>
+        2016-2017<br>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" nowrap>
+        <a href="https://stories.bi" title=
+        "Stories delivered first working Augmented Analytics product on the market."
+        target="_blank">Stories&nbsp;Augmented&nbsp;Analytics</a>
+        <span class=note>
+          <a href="https://workday.com" title=
+          "Workday acquired Stories Augmented Analytics in July 2018."
+          target="_blank">(acquired by Workday)</a>
+        </span>
+        <br>
+      </td>
+      <td colspan="4" class="reference">
+        <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a target="blank" href=
+        "https://linkedin.com/in/peterfedorocko" title=
         "Peter managed engineering. He can give you references to my work.">Peter Fedoročko</a>, Founder, Head of
         Engineering</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
-          Developing React/Redux/GraphQL/HighCharts frontend for BI Stories.
+          Co-developed React/Redux/Apollo/GraphQL/HighCharts frontend for Augmented Analytics.
         </p>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>Software Engineer</b>
         </p>
@@ -442,44 +491,45 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2" nowrap>
-        <a href="http://www.salsitasoft.com/" title=
-        "Salsita Software delivers state-of-the-art web applications engineering for clients around the world."
-        target="_blank">Salsita Software</a> <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+      <td colspan="2" nowrap>
+        <a href="https://salsitasoft.com" title=
+        "Salsita Software delivers modern web/mobile applications development."
+        target="_blank">Salsita Software</a><br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a target="blank" href=
-        "http://linkedin.com/in/romankaspar" title=
+        "https://linkedin.com/in/romankaspar" title=
         "Roman managed projects I worked on. He can give you references to my work.">Roman Kaspar</a>, Director of
         Engineering</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
-          Developed web applications with Angular, React/Redux, Flask, REST API's, RAML, and MySQL.
+          Developed web applications with React/Redux, Angular, Flask, REST API's, RAML, and MySQL.
         </p>
         <ul class="inline" type="square">
-          <li>Developed React/Redux photo manager for next generation of Balfour MyYear.
+          <li>Co-developed React/Redux/SVG photo manager for next generation of Balfour MyYear.
           </li>
-          <li>Developed Python/Flask/MySQL backend and Angular/HighCharts frontend for Balfour Reporting.
+          <li>Developed Python/Flask/MySQL backend, and Angular/HighCharts frontend for Balfour Reporting.
           </li>
-          <li>Developed Angular core for <a href="https://www.salsitasoft.com/clients/client-projects/smartbear"
-          target="_blank">SmartBear</a> SaaS platform and AlertSite service on top of it. <span class="note"><br>
-            —&nbsp;<a href="https://www.salsitasoft.com/clients/client-projects/smartbear" target=
+          <li>Developed Angular core for <a href="https://salsitasoft.com/clients/client-projects/smartbear"
+          target="_blank">SmartBear</a> SaaS platform and AlertSite service. <span class="note">
+            —&nbsp;<a href="https://salsitasoft.com/clients/client-projects/smartbear" target=
             "_blank">client&nbsp;testimonial</a></span>
           </li>
           <li>Developed mobile HTML5 Angular apps for <a href=
-          "https://www.salsitasoft.com/clients/client-projects/monterosa" target="_blank">Monterosa</a> and major
+          "https://salsitasoft.com/clients/client-projects/monterosa" target="_blank">Monterosa</a> and major
           british TV's. <span class="note">—&nbsp;<a href=
-          "https://www.salsitasoft.com/clients/client-projects/monterosa" target=
+          "https://salsitasoft.com/clients/client-projects/monterosa" target=
           "_blank">client&nbsp;testimonial</a></span>
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>Head of Software Development</b>
         </p>
@@ -489,37 +539,39 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2" nowrap>
-        <a href="http://www.netmail.cz/" title=
-        "Netmail helps businesses to move in the cloud and leads Google Apps implementations in Czech Republic."
-        target="_blank">Netmail</a> <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+      <td colspan="2" nowrap>
+        <a href="https://netmail.cz" title=
+        "Netmail helps businesses to move in the cloud and leads Google Apps deployments in Czech Republic."
+        target="_blank">Netmail</a>
+        <span class=note>
+          <a href="https://revolgy.com" title=
+          "Revolgy helps businesses to leverage cloud technologies and maintains Netmail brand in the service portfolio"
+          target="_blank">(expanded to Revolgy)</a>
+        </span><br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a target="blank" href=
-        "http://linkedin.com/in/bohuslavdohnal" title=
+        "https://linkedin.com/in/bohuslavdohnal" title=
         "Bohuslav managed projects I worked on. He can give you references to my work.">Bohuslav Dohnal</a>,
         Managing Director</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
-          Lead development projects using Google App Engine and Google Apps.
+          Lead development projects using Python, Google App Engine and Google Apps.
         </p>
         <ul class="inline" type="square">
-          <li>Designed and implemented REST APIs and backend architecture in Python.
+          <li>Developed Google App Engine Python backends and REST APIs.
           </li>
-          <li>Implemented project skeleton and libraries for data modelling, reusable REST API views, backend
-          tasks, access control, GAE hooks and multilevel caching.
-          </li>
-          <li>Implemented libraries and tasks for using Google Apps API. Synchronized users, calendars, documents
-          and document changes.
+          <li>Developed tasks to synchronize Google Apps users, calendars, documents and document changes.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>Software Developer</b>
         </p>
@@ -529,35 +581,33 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2" nowrap>
-        <a href="http://www.terraio.com/" title="Terraio - QR Advertisment, Analytics and User network management."
-        target="_blank">Terraio</a> startup + multiple clients
-        <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+      <td colspan="2" nowrap>
+        Multiple startups and customers
+        <br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a target="blank" href=
-        "http://linkedin.com/in/tomby" title=
-        "Tomáš Bílý lead group of researchers working on Terraio at Faculty of Mathematics and Physics at Charles University (MFF UK). He can give you references to my work.">Tomáš
+        "https://linkedin.com/in/tomby" title=
+        "Tomáš Bílý lead group of researchers working on startups at Faculty of Mathematics and Physics at Charles University (MFF UK). He can give you references to my work.">Tomáš
         Bílý</a>, MFF UK Researcher and Developer</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
           Developed projects using Python, Linux and Google App Engine.
         </p>
         <ul class="inline" type="square">
-          <li>Built an initial phase of network cloud services management project for an Amsterdam based european
-          network operator. Implemented p2p network testing probes driven by Kamaelia multithreaded generators and
-          running as daemons under Supervisord on Ubuntu VM nodes. Implemented operating processes for node/package
-          management (fabric, supervisord, sh, stdeb, reprepro, git, apt) and infrastructure setup (mongodb,
-          rsyslog, tinyproxy and nginx servers).
+          <li>Developed prototype of p2p cloud VPN node management with Python/Kamaelia/MongoDB/Ubuntu.
+          </li>
+          <li>Developed prototypes of backends and REST API's on Google App Engine.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>Software Developer</b>
         </p>
@@ -567,41 +617,40 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2" nowrap>
-        <a href="http://www.commerzbank.cz/" title=
+      <td colspan="2" nowrap>
+        <a href="https://commerzbank.cz" title=
         "The development centre in Prague was started in 2005 and brought agile development methods to the company."
-        target="_blank">Commerzbank</a> <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+        target="_blank">Commerzbank</a><br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a target="blank" href=
-        "http://linkedin.com/in/ryanseanmcgloin" title=
+        "https://linkedin.com/in/ryanseanmcgloin" title=
         "Ryan McGloin managed infrastructure and maintenance projects I worked on. He can give you references to my work. ADS stands for Adaptive Development Services.">Ryan
         McGloin</a>, Local Head ADS</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
-          Took part in an agile development process wherever IT interdisciplinary skills were needed.
+          Developed Intranet applications, reporting/integration/management tools and CI/security tests.
         </p>
         <ul class="inline" type="square">
-          <li>Setup testing environment and SUSE Linux WebSphere/JBoss/Oracle/Sybase infrastructure.
+          <li>Lead development of Intranet CMS applications in Firstspirit/Java/Jython/Beanshell.
           </li>
           <li>Analysed e-banking and server infrastructure migration to the in-house managed server platform.
           </li>
-          <li>Developed reporting and database checking tools (python), Connect:Direct scripting base (ksh, bat)
-          and local servers/desktops/services management scripts (ksh, sh, bash, bat, python, sql).
+          <li>Setup testing environment and SUSE Linux WebSphere/JBoss/Oracle/Sybase infrastructure.
           </li>
-          <li>Lead local development of Firstspirit-based CMS applications for company Internet websites (java,
-          jython, beanshell).
+          <li>Developed reporting/integration/management tools in Python/Shell/Connect:Direct.
           </li>
-          <li>Co-developed the Application Security Test Concept.
+          <li>Co-developed the Application Security Test Concept based on OWASP.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>IT&amp;eB Executive</b>
         </p>
@@ -611,36 +660,39 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2" nowrap>
-        <a href="http://www.pfizer.com/" title=
-        "Wyeth Czech was a local office of major worldwide pharmaceutical company, acquired by Pfizer in October 2009."
-        target="_blank">Wyeth / Pfizer</a> <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+      <td colspan="2" nowrap>
+        <a href="https://pfizer.com" title=
+        "Wyeth Czech was a local office of major worldwide pharmaceutical company, acquired by Pfizer in 2009."
+        target="_blank">Wyeth <span class=note>(acquired by Pfizer)</span></a><br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a rel="nofollow" href=
-        "https://www.linkedin.com/in/vladimir-chmela-a5506387" title=
+        "https://linkedin.com/in/vladimir-chmela-a5506387" title=
         "I did report to Vladimír Chmela. He can give you references to my work.">Vladimír Chmela</a>, CFO</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
           Responsible for IT of Czech branch in a global network.
         </p>
         <ul class="inline" type="square">
-          <li>Managed Novell Netware 5.1 network with Windows 2000 clients, S&amp;M/F&amp;A/R&amp;D applications
-          and Groupwise 5.5. Supported global internet, intranet, WAN, RAS, security, ITC and eB solutions. Planned
-          budget and managed assets, suppliers and services.
+          <li>Planned budget and managed assets, suppliers and services.
           </li>
-          <li>Reshaped servers and network to be compliant with global setup and policies, cooperated in merge into
-          global NDS, implemented global ZENworks based workstation management. Coordinated local JDE
-          implementation, network infrastructure upgrade and country intranet setup.
+          <li>Managed Novell Netware 5.1, GroupWise 5.5, Windows 2k and S&amp;M/F&amp;A/R&amp;D applications.
+          </li>
+          <li>Reshaped network for global setup compliancy, cooperated in merge into global NDS.
+          </li>
+          <li>Implemented global ZENworks management, supported global WAN/RAS/security/ITC/eB solutions.
+          </li>
+          <li>Coordinated local JDE implementation, network infrastructure upgrade and country intranet setup.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>Network Administrator</b>
         </p>
@@ -650,37 +702,35 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2" nowrap>
-        <a href="http://www.hmedia.cz/" title=
+      <td colspan="2" nowrap>
+        <a href="http://hmedia.cz" title=
         "H-Media provides an in-board healthcare advertisment network in Czech Republic." target=
-        "_blank">H-Media</a> <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+        "_blank">H-Media</a><br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a rel="nofollow" href=
-        "http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI="
+        "https://google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI="
         onclick=
-        "window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
+        "window.open('https://google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75ISY2-FFwJA8G7-j7vPaiSSIfscuZMTJBeUv0kS3ScrI\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
         title="I did report to Michal Ouzký. He can give you references to my work. Write in Czech please.">Michal
         Ouzký</a>, Technical Manager</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
           Responsible for IT.
         </p>
         <ul class="inline" type="square">
-          <li>Implemented and managed Novell Netware 4.11/5.1 network with Windows 95/98/NT clients,
-          S&amp;M/F&amp;A applications, Internet, e-mail, backup, security and data exchange.
-          </li>
-          <li>Implemented Novell ZENworks based workstation management with Windows deployed from disk images and
-          user applications, policies and profiles automatically delivered from network.
+          <li>Implemented and managed Novell Netware 4.11/5.1 network with ZENWorks, Windows 95/98/NT,
+          Internet, e-mail, backup, security and data exchange solutions.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>MIS Technician</b>
         </p>
@@ -690,36 +740,36 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2">
-        <a href="http://www.trw.com/" title=
-        "TRW-Carr is a local factory of Seat Belt Systems division of TRW Automotive." target="_blank">TRW</a>
-        <!-- <span class=note>, Stará Boleslav,&nbsp;CZ</span>--><br>
+      <td colspan="2">
+        <a href="https://trw.com" title=
+        "TRW-Carr is a local factory of Seat Belt Systems division of TRW Automotive, acquired by ZF Friedrichshafen in 2015."
+        target="_blank">TRW <span class=note>(acquired by ZF)</span></a>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a rel="nofollow" href=
-        "https://www.linkedin.com/in/shahed-jamal-ashraf-65198897/" title=
+        "https://linkedin.com/in/shahed-jamal-ashraf-65198897" title=
         "Shahed Jamal Ashraf worked closely with me. He can give references to my work.">Shahed Jamal Ashraf</a>,
         CFO</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
           Responsible for Brain XPPS production planning and control system. Co-responsible for IT.
         </p>
         <ul class="inline" type="square">
-          <li>Managed XPPS on AS/400, provided DB2 qrymgr/SQL data reports for F&amp;A, logistics and
-          warehouse management. Coordinated warehouse inventories with CFO.
+          <li>Managed XPPS on AS/400, provided data reports for F&amp;A, logistics and warehouse management.
           </li>
-          <li>Co-managed Novell Netware 4.11/5.0, Novell Groupwise 5.1 and Ethernet/Token Ring network. Supported
-          NDS/Groupwise operations within TRW Global Network and WAN/EDI/RAS solutions.
-          <!-- Supported 100+ employees in 2-member team. -->
+          <li>Managed Novell Netware 4.11/5.0 network with global NDS/GroupWise/WAN/EDI/RAS solutions.
+          </li>
+          <li>Coordinated warehouse inventories with CFO.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>User Support Technician (Civil Service)</b>
         </p>
@@ -729,32 +779,32 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2">
-        <a href="http://www.vse.cz/" target="_blank">University of Economics</a>
-        <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+      <td colspan="2">
+        <a href="https://vse.cz" target="_blank">University of Economics</a>
+        <br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a target="blank" href=
-        "https://www.linkedin.com/in/jan-havlicek-42a7725" title=
-        "I did report to Jan Havlíček. He can give you references to my work.">Jan Havlíček</a>, Support
-        Manager</span>
+        "https://linkedin.com/in/jan-havlicek-42a7725" title=
+        "I did report to Jan Havlíček. He can give you references to my work.">Jan Havlíček</a>, Support Manager</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
-          Supported 1500+ employees in 3-member team.
+          Supported 1500+ employees in a 3-member team.
         </p>
         <ul class="inline" type="square">
           <li>Installed new hardware and software, reimplemented image based workstation deployment.
           </li>
-          <li>Cooperated in LAN/MAN maint., Netware troubleshooting and setting up a new college network.
+          <li>Cooperated in LAN/MAN/Netware maintenance and setting up a new college network.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>Network Administrator</b>
         </p>
@@ -764,36 +814,36 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="2">
-        <a href="http://www.billboardcz.cz/" title=
-        "Billboard-Outdoor provides a billboard advertisment network in Czech Republic." target=
-        "_blank">Billboard</a> <!-- <span class=note>, Prague,&nbsp;CZ</span> --><br>
+      <td colspan="2">
+        <a href="https://akzent-media.cz" title=
+        "Billboard provided a billboard advertisment network in Czech Republic, acquired by Akzent Media in 1996." target=
+        "_blank">Billboard <span class=note>(acquired by Akzent Media)</span></a><br>
       </td>
       <td colspan="4" class="reference">
         <span class="srefc">Ref:</span>&nbsp;<span class="srefc"><a rel="nofollow" href=
-        "http://www.google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w="
+        "https://google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w="
         onclick=
-        "window.open('http://www.google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
+        "window.open('https://google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75EDb1QqQpHZg880wI_BvNx_j9M5QFKhKaGIn-M8l-B-w\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
         title="I did report to Šťěpán Hutla. He can give you references to my work.">Šťěpán Hutla</a>, Technical
         Director</span>
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
           Responsible for IT.
         </p>
         <ul class="inline" type="square">
-          <li>Implemented and managed Novell Netware 3.12/4.11 network with Windows 3.1/95 clients, S&amp;M/F&amp;A
-          applications, Internet proxy, e-mail, backup and security.
+          <li>Setup Novell Netware 3.12/4.11 network with Windows 3.1/95, Internet, e-mail, backup, security.
           </li>
-          <li>Supervised development of campaign building client application.
+          <li>Managed development of campaign building client application.
           </li>
         </ul>
       </td>
     </tr>
-    <tr valign="bottom">
-      <td class="block-start" colspan="5">
+
+    <tr class="block-start" valign="bottom">
+      <td colspan="5">
         <p class="h3s">
           <b>Network Administrator (Scholarship Activity)</b>
         </p>
@@ -803,19 +853,19 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="6">
-        <a href="http://www.mff.cuni.cz/" target="_blank">Faculty of Mathematics and Physics</a> at&nbsp;<a href=
-        "http://www.cuni.cz/" target="_blank">Charles&nbsp;University</a> (MFF&nbsp;UK)
-        <!-- <span class=note>, Prague,&nbsp;CZ</span> -->
+      <td colspan="6">
+        <a href="https://mff.cuni.cz" target="_blank">Faculty of Mathematics and Physics</a> at&nbsp;<a href=
+        "https://cuni.cz" target="_blank">Charles&nbsp;University</a> (MFF&nbsp;UK)
       </td>
     </tr>
-    <tr>
-      <td class="block-end" colspan="6">
+    <tr class="block-end">
+      <td colspan="6">
         <p class="p31">
           Co-administered Novell Netware 3.11 computing lab network.
         </p>
       </td>
     </tr>
+
     <tr class="block-start">
       <td colspan="6" nowrap>
         <h2>
@@ -823,7 +873,7 @@ Eye/brain hurting effect is almost inevitable ;)
         </h2>
       </td>
     </tr>
-    <tr class="block-inside" valign="bottom">
+    <tr valign="bottom">
       <td colspan="6">
         <p class="h31">
           <b>Secondary and University Education</b>
@@ -831,15 +881,14 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr>
-      <td class="block-inside" colspan="6">
+      <td colspan="6">
         <p class="h41">
-          <a href="http://www.cuni.cz/zborovska/" target="_blank">Gymnázium Korunní -&nbsp;Zborovská</a>
-          <!-- <span class=note>, Prague,&nbsp;CZ</span> -->
+          <a href="https://cuni.cz/zborovska" target="_blank">Gymnázium Korunní -&nbsp;Zborovská</a>
         </p>
       </td>
     </tr>
     <tr valign="top">
-      <td class="block-inside" rowspan="2" nowrap>
+      <td rowspan="2" nowrap>
         <p class="topic">
           Specialization:
         </p>
@@ -859,8 +908,8 @@ Eye/brain hurting effect is almost inevitable ;)
         1991-1994
       </td>
     </tr>
-    <tr valign="top">
-      <td class="block-end" nowrap>
+    <tr class="block-end" valign="top">
+      <td nowrap>
         <p class="topic">
           Degree earned:
         </p>
@@ -869,12 +918,12 @@ Eye/brain hurting effect is almost inevitable ;)
         Maturita (General Certificate of Education)
       </td>
     </tr>
-    <tr>
-      <td class="block-start" colspan="5" nowrap>
+
+    <tr class="block-start">
+      <td colspan="5" nowrap>
         <p class="h4">
-          <a href="http://www.mff.cuni.cz/" target="_blank">Faculty of Mathematics and Physics</a> at&nbsp;<a href=
-          "http://www.cuni.cz/" target="_blank">Charles&nbsp;University</a> (MFF&nbsp;UK)
-          <!-- <span class=note>, Prague,&nbsp;CZ</span> -->
+          <a href="https://mff.cuni.cz" target="_blank">Faculty of Mathematics and Physics</a> at&nbsp;<a href=
+          "https://cuni.cz" target="_blank">Charles&nbsp;University</a> (MFF&nbsp;UK)
         </p>
       </td>
       <td class="date">
@@ -882,7 +931,7 @@ Eye/brain hurting effect is almost inevitable ;)
       </td>
     </tr>
     <tr valign="top">
-      <td class="block-inside" nowrap>
+      <td nowrap>
         <p class="topic">
           Study branch:
         </p>
@@ -891,8 +940,8 @@ Eye/brain hurting effect is almost inevitable ;)
         Master Study (MSc.) of Computer Science
       </td>
     </tr>
-    <tr valign="top">
-      <td class="block-end" colspan="6">
+    <tr class="block-end" valign="top">
+      <td colspan="6">
         <p class="p3">
           Interrupted the study in 4th semester due to time constraints with 2 half-time jobs.
         </p>
