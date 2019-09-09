@@ -1,1 +1,25 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# marked
 \!*
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# local settings
+/.env.local
+/.env.*.local
+
+# logs
+/*.log*
+
+# misc
+.DS_Store
