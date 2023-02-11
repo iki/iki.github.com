@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <!--
-
-Used to HTML5?
-
-Advance carefully, then.
-
+Used to HTML5? Advance carefully, then.
 This is a native table layout from the last millennium.
-
 Eye/brain hurt effect is almost inevitable ;)
-
 -->
 <html prefix="og: https://ogp.me/ns#">
   <head>
-    <meta
-      name="generator"
-      content="HTML Tidy for HTML5 for Windows version 5.4.0"
-    />
     <meta name="Description" lang="en" content="Resume of Jan Killian" />
     <meta name="Author" content="Jan Killian" />
     <meta name="Resource-type" content="document" />
@@ -245,6 +235,20 @@ Eye/brain hurt effect is almost inevitable ;)
         page-break-before: always !important;
         -webkit-region-break-before: always !important;
       }
+      .contact a {
+        display: inline-block;
+      }
+      .contact a * {
+        display: none;
+      }
+      .contact a:before {
+        content: attr(data-rev);
+        direction: rtl;
+        unicode-bidi: bidi-override;
+      }
+      .contact a:after {
+        content: '\002e'attr(data-tld);
+      }
       @media print {
         body {
           font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
@@ -276,10 +280,13 @@ Eye/brain hurt effect is almost inevitable ;)
           <div class="contact">
             <a
               rel="nofollow"
-              href="https://google.com/recaptcha/mailhide/d?k=01WW5dncVTUkd6A-EOZTwwFw==&amp;c=fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E="
-              onclick="window.open('https://google.com/recaptcha/mailhide/d?k\07501WW5dncVTUkd6A-EOZTwwFw\75\75\46c\75fCVJqua_Yhx84Pqyco6XMxuCtrHKhOBaCsXKgaxwR5E\075', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;"
-              title="Fill the 4 missing surname letters, or click to reveal."
-              >jan.kil....@gmail.com</a
+              href="https://mailhide.io/e/2fUSS3mQ"
+              onclick="window.open('https://mailhide.io/e/2fUSS3mQ','Show Email','width=500,height=500,popup'); return false;"
+              target="Show Email"
+              title="Fill the 4 missing surname letters, or click to reveal"
+              data-rev="liamg&#X40;....lik.naj"
+              data-tld="com"
+              ><span>Jan Killian</span></a
             >, +420-776-0-776-76<br />
             20&nbsp;Sokolská&nbsp;St., Prague&nbsp;2,
             120&nbsp;00,&nbsp;CZ,&nbsp;EU
