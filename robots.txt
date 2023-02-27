@@ -2,5 +2,9 @@
 # http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
 
 User-agent: *
+Disallow: /about/
 Disallow: /cv/
+Disallow: /me/
+Disallow: /meet/
 Disallow: /resume/
+Disallow: /resume.pdf
