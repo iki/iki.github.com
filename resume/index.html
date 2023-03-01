@@ -46,8 +46,16 @@ TODO: Add dark/light mode detector and switch
     />
 
     <style type="text/css" media="all">
+      @media (max-width: 640px) {
+        body {
+          font-size: 0.82em !important;
+        }
+      }
       body {
         font-size: 0.7em;
+        -webkit-text-size-adjust: none;
+        -moz-text-size-adjust: none;
+        -ms-text-size-adjust: none;
         font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
         color: #faf7f0;
         /* color: #000000; */
