@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Used to HTML5? Advance carefully, then.
+Used to HTML5, flexbox and grid? Advance carefully, then.
 This is a native table layout from the last millennium.
 Eye/brain hurt effect is almost inevitable ;)
 
@@ -50,24 +50,51 @@ TODO: Add dark/light mode detector and switch
         body {
           font-size: 0.82em !important;
         }
+        .controls {
+          padding-right: 4px;
+        }
       }
       body {
         font-size: 0.7em;
         -webkit-text-size-adjust: none;
         -moz-text-size-adjust: none;
         -ms-text-size-adjust: none;
-        font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         color: #faf7f0;
-        /* color: #000000; */
         background: #181e28 none;
-        /* background: #E8F0FF none; */
+        padding: 0;
+        margin: 2.3em 8px;
+      }
+      #qr {
+        position: relative;
+        top: 1.2em;
+      }
+      #qr img {
+        padding: 5px;
+        background-color: white;
+        border-radius: 12%;
+        margin-right: calc(-5px * (1 - var(--darkmode)));
+        width: 60%;
+      }
+      .controls {
+        text-align: right;
+      }
+      .controls > * {
+        position: relative;
+        top: -2.2em;
+      }
+      .button {
+        font-size: 0.85em;
+        letter-spacing: 0.1em;
+        padding: 0.1em 0.7em;
+        border: currentColor solid 1px;
+        border-radius: 1em;
       }
       a,
       .a-like {
         text-decoration: none;
         border-style: none none;
         color: #b9e0e8;
-        /* color: #004080; */
         background: transparent none;
       }
       .a-like:hover {
@@ -117,58 +144,54 @@ TODO: Add dark/light mode detector and switch
         -webkit-region-break-after: avoid;
       }
       .block td {
-        padding: 1em 0em 0em 0em;
+        padding: 1em 0 0 0;
         page-break-inside: avoid;
         -webkit-region-break-inside: avoid;
       }
       p {
-        font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
         font-weight: normal;
         text-align: left;
-        text-indent: 0em;
-        margin: 0em;
-        padding: 0em;
+        text-indent: 0;
+        margin: 0;
+        padding: 0;
       }
       ul {
-        margin: 0em 0em 0em 3em;
-        padding: 0em;
+        margin: 0 0 0 3em;
+        padding: 0;
         list-style: square outside;
       }
       ul.inline {
-        margin: 0.4em 0em 0em 3em;
-        padding: 0em;
+        margin: 0.4em 0 0 3em;
+        padding: 0;
         list-style: square outside;
       }
       ul.inner {
-        margin: 0em;
-        padding: 0em;
+        margin: 0;
+        padding: 0;
         list-style: square outside;
       }
       li {
-        font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
         font-weight: normal;
         text-align: justify;
-        margin: 0em;
-        padding: 0em;
+        margin: 0;
+        padding: 0;
         list-style: square outside;
       }
       h1 {
-        font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
         font-weight: normal;
         font-size: 2.2em;
         text-decoration: none;
         letter-spacing: 0.8em;
-        margin: 0em;
-        padding: 0em 1em 1em 0em;
+        margin: 0;
+        padding: 0 1em 1em 0;
       }
       h2 {
-        font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
         font-weight: normal;
         font-size: 1.7em;
         text-decoration: none;
         letter-spacing: 0.5em;
-        margin: 0em;
-        padding: 1.62em 0em 1em 0em;
+        margin: 0;
+        padding: 1.62em 0 1em 0;
       }
       p.h3,
       p.h31,
@@ -178,22 +201,22 @@ TODO: Add dark/light mode detector and switch
         font-size: 1.2em;
       }
       p.h3 {
-        padding: 1.62em 1em 1em 0em;
+        padding: 1.62em 1em 1em 0;
       }
       p.h31 {
-        padding: 0em 1em 1em 0em;
+        padding: 0 1em 1em 0;
       }
       p.h3s {
-        padding: 1.62em 1em 0em 0em;
+        padding: 1.62em 1em 0 0;
       }
       p.h3s1 {
-        padding: 0em 1em 0em 0em;
+        padding: 0 1em 0 0;
       }
       p.h4 {
-        padding: 0.7em 1em 0.3em 0em;
+        padding: 0.7em 1em 0.3em 0;
       }
       p.h41 {
-        padding: 0em 1em 0.3em 0em;
+        padding: 0 1em 0.3em 0;
       }
       p.p21 {
         text-align: justify;
@@ -202,17 +225,17 @@ TODO: Add dark/light mode detector and switch
       p.p2 {
         text-align: justify;
         text-indent: 3em;
-        padding: 0.3em 0em 0em 0em;
+        padding: 0.3em 0 0 0;
       }
       p.p31 {
         text-align: justify;
         text-indent: 3em;
-        padding: 0.3em 0em 0em 0em;
+        padding: 0.3em 0 0 0;
       }
       p.p3 {
         text-align: justify;
         text-indent: 3em;
-        padding: 0em;
+        padding: 0;
       }
       .topic {
         text-indent: 3em;
@@ -315,21 +338,39 @@ TODO: Add dark/light mode detector and switch
           </div>
         </td>
       </tr>
-      <tr class="skip-print">
+      <!-- <tr class="skip-print">
         <td colspan="6" class="date" nowrap>
           <a href="../resume.pdf" target="_blank">[printable pdf]</a>
         </td>
-      </tr>
+      </tr> -->
       <tr>
         <td width="25%" nowrap>&nbsp;</td>
         <td width="25%" nowrap>&nbsp;</td>
         <td width="10%" nowrap>&nbsp;</td>
         <td width="10%" nowrap>&nbsp;</td>
         <td width="10%" nowrap>&nbsp;</td>
-        <td width="20%" nowrap>&nbsp;</td>
+        <td id="qr" class="controls" width="20%" rowspan="3">
+          <a class="img" href="https://iki.bio.link">
+            <picture>
+              <source
+                srcset="qr-iki-100.webp, qr-iki-200.webp 2x, qr-iki-400.webp 4x"
+                type="image/webp"
+              />
+              <source
+                srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
+                type="image/png"
+              />
+              <img
+                src="qr-iki-200.png"
+                srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
+                alt="iki.bio.link"
+              />
+            </picture>
+          </a>
+        </td>
       </tr>
       <tr class="block-end">
-        <td colspan="6">
+        <td colspan="5">
           <p class="p21">
             <em
               >First make it <b>work</b>. Then, make it <b>beautiful</b>. Then,
@@ -348,7 +389,7 @@ TODO: Add dark/light mode detector and switch
         </td>
       </tr>
       <tr>
-        <td colspan="6" nowrap>
+        <td colspan="5" nowrap>
           <h2>About</h2>
         </td>
       </tr>
