@@ -46,11 +46,50 @@ TODO: Add dark/light mode detector and switch
     />
 
     <style type="text/css" media="all">
-      @media (max-width: 640px) {
+      html,
+      html:has(#color-scheme-light:checked) {
+        --darkmode: 0;
+        --background: #fff;
+        --primary: #444;
+        --secondary: #3965a0;
+        --highlight: #4fba81;
+      }
+      @media screen {
+        html:has(#color-scheme-dark:checked) {
+          --darkmode: 1;
+          --background: #293344;
+          --primary: #e1ded8;
+          --secondary: #bddaff;
+          --highlight: #67f3a8;
+        }
+        @media (prefers-color-scheme: dark) {
+          html {
+            --darkmode: 1;
+            --background: #293344;
+            --primary: #e1ded8;
+            --secondary: #bddaff;
+            --highlight: #67f3a8;
+          }
+        }
+        .skip-screen {
+          display: none !important;
+        }
+      }
+      @media print {
+        html {
+          --background: #fff !important;
+          --primary: #000 !important;
+        }
+        .skip-print {
+          display: none !important;
+        }
+      }
+      @media screen and (max-width: 640px) {
         body {
           font-size: 0.82em !important;
         }
-        .controls {
+        .controls,
+        #qr {
           padding-right: 4px;
         }
       }
@@ -60,74 +99,173 @@ TODO: Add dark/light mode detector and switch
         -moz-text-size-adjust: none;
         -ms-text-size-adjust: none;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #faf7f0;
-        background: #181e28 none;
+        color: var(--primary);
+        background: var(--background);
         padding: 0;
         margin: 2.3em 8px;
+        transition: all 300ms ease-in;
       }
       #qr {
+        text-align: right;
         position: relative;
-        top: 1.2em;
+        top: -1em;
+        @media print {
+          top: -1.5em;
+        }
       }
-      #qr img {
+      #qr img.qr-box {
         padding: 5px;
         background-color: white;
         border-radius: 12%;
+        @media print {
+          padding-bottom: 1px;
+        }
+      }
+      #qr .qr-box {
+        width: 70%;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
         margin-right: calc(-5px * (1 - var(--darkmode)));
-        width: 60%;
+      }
+      .svg-icon {
+        display: inline-flex;
+        align-self: center;
+      }
+      .svg-icon svg {
+        height: 1.2em;
+        width: 1.2em;
       }
       .controls {
-        text-align: right;
-      }
-      .controls > * {
+        display: flex;
+        justify-content: flex-end;
         position: relative;
-        top: -2.2em;
+        top: -1.85em;
+        gap: 0.75em;
       }
-      .button {
+      .toggle-group {
+        padding: 0;
+        margin: 0;
+        display: inline-flex;
+        align-self: baseline;
+      }
+      .toggle-group input {
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        position: absolute;
+      }
+      .toggle-group label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0.1em 0.3em;
+      }
+      .toggle-group label svg {
+        height: 100%;
+      }
+      .toggle-group label:first-child {
+        border-radius: 0.7em 0 0 0.7em;
+      }
+      .toggle-group label:last-child {
+        border-radius: 0 0.7em 0.7em 0;
+      }
+      .toggle-group label:has(input:checked) {
+        cursor: default;
+        color: var(--secondary);
+        background: transparent;
+        opacity: 50%;
+      }
+      .toggle-group label:hover {
+        color: var(--background);
+        background: var(--secondary);
+      }
+      a.button,
+      .toggle-group {
+        color: var(--secondary);
         font-size: 0.85em;
         letter-spacing: 0.1em;
-        padding: 0.1em 0.7em;
+        white-space: nowrap;
+        user-select: none;
         border: currentColor solid 1px;
+        border-radius: 0.8em;
+      }
+      a.button {
+        display: inline-block;
+        padding: 0.1em 0.7em;
+        text-align: center;
+      }
+      a.button:hover {
+        color: var(--background);
+        background: var(--secondary);
+        border: var(--secondary) solid 1px;
         border-radius: 1em;
+        text-decoration: none;
+      }
+      a.button:active {
+        color: var(--background);
+        background: var(--highlight);
+        border: var(--highlight) solid 1px;
+        border-radius: 1em;
+        text-decoration: none;
+        /* transform: scale(0.95); */
       }
       a,
-      .a-like {
-        text-decoration: none;
+      .a-like,
+      a.img:hover,
+      a.img:active {
         border-style: none none;
-        color: #b9e0e8;
-        background: transparent none;
+        color: var(--secondary);
+        background: transparent;
+        text-decoration: none;
+        transition: transform 100ms ease-in;
+      }
+      a.img img {
+        transition: transform 100ms ease-in;
+      }
+      a.img:hover img {
+        transform: scale(1.1);
+      }
+      a.img:active {
+        background: transparent;
+      }
+      a.img:active img {
+        transform: scale(0.95);
       }
       .a-like:hover {
         cursor: not-allowed;
       }
       a:hover,
       a:hover .note {
-        color: #e7a7a2;
-        /* color: #FF0000; */
-        background: transparent none;
+        color: var(--background);
+        background: var(--secondary);
+        border-radius: 0.2em;
+        /* text-decoration: underline; */
       }
       a:active,
       a:active .note {
-        color: #000000;
-        background: #5ab4da none;
-        /* color: #FAF7F0; */
-        /* background: #0080C0 none; */
+        color: var(--background);
+        background: var(--highlight);
+        border-radius: 0.2em;
+        text-decoration: none;
+      }
+      ::selection {
+        color: var(--background);
+        background: var(--secondary);
       }
       .note {
         font-size: 0.8em;
-        color: #b9e0e8;
-        /* color: #004080; */
-        background: transparent none;
+        color: var(--secondary);
         vertical-align: baseline;
       }
       .contact {
         font-size: 0.8em;
         text-align: right;
-        padding: 0px 0px 1px 3px;
-        border-width: 0px 0px 1px 1px;
+        margin-top: 0.4em;
+        padding: 0 0 1px 3px;
+        border-width: 0 0 1px 1px;
         border-style: solid;
-        border-color: #5ab4da;
-        /* border-color: #0080C0; */
+        border-color: var(--secondary);
       }
       table {
         margin: auto;
@@ -290,29 +428,6 @@ TODO: Add dark/light mode detector and switch
       .contact a:after {
         content: '\002e'attr(data-tld);
       }
-      @media print {
-        body {
-          font-size: 0.7em !important;
-          -webkit-text-size-adjust: none;
-          -moz-text-size-adjust: none;
-          -ms-text-size-adjust: none;
-          font-family: verdana, 'arial CE', 'helvetica CE', arial, helvetica;
-          color: #000000;
-          background: #ffffff none;
-        }
-        a {
-          color: #004080;
-        }
-        .note {
-          color: #004080;
-        }
-        .contact {
-          border-color: #0080c0;
-        }
-        .skip-print {
-          display: none !important;
-        }
-      }
     </style>
   </head>
   <body>
@@ -338,18 +453,65 @@ TODO: Add dark/light mode detector and switch
           </div>
         </td>
       </tr>
-      <!-- <tr class="skip-print">
-        <td colspan="6" class="date" nowrap>
-          <a href="../resume.pdf" target="_blank">[printable pdf]</a>
+      <tr class="skip-print">
+        <td colspan="6" nowrap>
+          <div class="controls">
+            <a class="button" href="../resume.pdf" target="_blank">PDF</a>
+            <fieldset id="color-scheme" class="toggle-group">
+              <label>
+                <input
+                  type="radio"
+                  name="color-scheme"
+                  id="color-scheme-light"
+                  value="light"
+                />
+                <span class="svg-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path
+                      fill="currentColor"
+                      d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"
+                    />
+                  </svg>
+                </span>
+              </label>
+              <label>
+                <input type="radio" name="color-scheme" value="auto" checked />
+                <span class="svg-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path
+                      fill="currentColor"
+                      d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"
+                    />
+                  </svg>
+                </span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="color-scheme"
+                  id="color-scheme-dark"
+                  value="dark"
+                />
+                <span class="svg-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path
+                      fill="currentColor"
+                      d="M279.135 512c78.756 0 150.982-35.804 198.844-94.775 28.27-34.831-2.558-85.722-46.249-77.401-82.348 15.683-158.272-47.268-158.272-130.792 0-48.424 26.06-92.292 67.434-115.836 38.745-22.05 28.999-80.788-15.022-88.919A257.936 257.936 0 0 0 279.135 0c-141.36 0-256 114.575-256 256 0 141.36 114.576 256 256 256zm0-464c12.985 0 25.689 1.201 38.016 3.478-54.76 31.163-91.693 90.042-91.693 157.554 0 113.848 103.641 199.2 215.252 177.944C402.574 433.964 344.366 464 279.135 464c-114.875 0-208-93.125-208-208s93.125-208 208-208z"
+                    />
+                  </svg>
+                </span>
+              </label>
+            </fieldset>
+          </div>
         </td>
-      </tr> -->
+      </tr>
       <tr>
-        <td width="25%" nowrap>&nbsp;</td>
-        <td width="25%" nowrap>&nbsp;</td>
-        <td width="10%" nowrap>&nbsp;</td>
-        <td width="10%" nowrap>&nbsp;</td>
-        <td width="10%" nowrap>&nbsp;</td>
-        <td id="qr" class="controls" width="20%" rowspan="3">
+        <td width="130px%" nowrap>&nbsp;</td>
+        <td width="170px" nowrap>&nbsp;</td>
+        <td width="55px%" nowrap>&nbsp;</td>
+        <td width="55px" nowrap>&nbsp;</td>
+        <td width="60px" nowrap>&nbsp;</td>
+        <td id="qr" width="130px" rowspan="3">
           <a class="img" href="https://iki.bio.link">
             <picture>
               <source
@@ -363,10 +525,14 @@ TODO: Add dark/light mode detector and switch
               <img
                 src="qr-iki-200.png"
                 srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
+                class="qr-box"
                 alt="iki.bio.link"
               />
             </picture>
           </a>
+          <span class="qr-box skip-screen">
+            <a class="button" href="https://iki.bio.link">iki.bio.link</a>
+          </span>
         </td>
       </tr>
       <tr class="block-end">
