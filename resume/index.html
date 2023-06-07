@@ -103,7 +103,8 @@ TODO: Add dark/light mode detector and switch
         background: var(--background);
         padding: 0;
         margin: 2.3em 8px;
-        transition: all 300ms ease-in;
+        transition: color 300ms ease-in;
+        transition: background 300ms ease-in;
       }
       #qr {
         text-align: right;
@@ -113,7 +114,7 @@ TODO: Add dark/light mode detector and switch
           top: -1.5em;
         }
       }
-      #qr img.qr-box {
+      #qr img.qr-code {
         padding: 5px;
         background-color: white;
         border-radius: 12%;
@@ -121,20 +122,12 @@ TODO: Add dark/light mode detector and switch
           padding-bottom: 1px;
         }
       }
-      #qr .qr-box {
+      #qr .qr-code {
         width: 70%;
         display: inline-block;
         box-sizing: border-box;
         text-align: center;
         margin-right: calc(-5px * (1 - var(--darkmode)));
-      }
-      .svg-icon {
-        display: inline-flex;
-        align-self: center;
-      }
-      .svg-icon svg {
-        height: 1.2em;
-        width: 1.2em;
       }
       .controls {
         display: flex;
@@ -143,11 +136,18 @@ TODO: Add dark/light mode detector and switch
         top: -1.85em;
         gap: 0.75em;
       }
+      .svg-icon svg {
+        height: 1em;
+        width: 1em;
+      }
       .toggle-group {
         padding: 0;
         margin: 0;
         display: inline-flex;
         align-self: baseline;
+      }
+      .toggle-group .svg-icon {
+        display: inline-flex;
       }
       .toggle-group input {
         height: 1px;
@@ -160,9 +160,6 @@ TODO: Add dark/light mode detector and switch
         align-items: center;
         cursor: pointer;
         padding: 0.1em 0.3em;
-      }
-      .toggle-group label svg {
-        height: 100%;
       }
       .toggle-group label:first-child {
         border-radius: 0.7em 0 0 0.7em;
@@ -183,12 +180,19 @@ TODO: Add dark/light mode detector and switch
       a.button,
       .toggle-group {
         color: var(--secondary);
-        font-size: 0.85em;
+        font-size: 0.8em;
         letter-spacing: 0.1em;
         white-space: nowrap;
         user-select: none;
         border: currentColor solid 1px;
         border-radius: 0.8em;
+      }
+      .toggle-group .svg-icon svg {
+        height: 1.25em;
+        width: 1.25em;
+      }
+      a.button.print {
+        padding: 0.2em 0.25em 0 0.25em;
       }
       a.button {
         display: inline-block;
@@ -502,6 +506,16 @@ TODO: Add dark/light mode detector and switch
                 </span>
               </label>
             </fieldset>
+            <a class="button print" href="#" onclick="print(); return false">
+              <span class="svg-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    fill="currentColor"
+                    d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"
+                  />
+                </svg>
+              </span>
+            </a>
           </div>
         </td>
       </tr>
@@ -523,14 +537,16 @@ TODO: Add dark/light mode detector and switch
                 type="image/png"
               />
               <img
+                alt="iki.bio.link"
+                class="qr-code printable"
                 src="qr-iki-200.png"
                 srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
-                class="qr-box"
-                alt="iki.bio.link"
+                data-src="qr-iki-400.png"
+                data-src-webp="qr-iki-400.webp"
               />
             </picture>
           </a>
-          <span class="qr-box skip-screen">
+          <span class="qr-code skip-screen">
             <a class="button" href="https://iki.bio.link">iki.bio.link</a>
           </span>
         </td>
@@ -1389,5 +1405,58 @@ TODO: Add dark/light mode detector and switch
         </td>
       </tr>
     </table>
+
+    <script>
+      const Support = {}
+      const supportsWebP = async () =>
+        (Support.WebP ??= await (Support.WebP = new Promise((resolve) => {
+          const i = new Image()
+          i.addEventListener('error', () => resolve(false))
+          i.addEventListener('load', () => resolve(i.width === 1))
+          i.src =
+            'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA='
+        })))
+
+      const PreloadImageCache = {}
+      const preloadImage = async (src) =>
+        (PreloadImageCache[src] ??= new Promise((resolve) => {
+          console.log(`Loading async image: ${src}`)
+          const img = new Image()
+          img.src = src
+          img.onload = resolve
+        }))
+
+      const replaceImage = (img, src) => {
+        img.parentElement.querySelectorAll('source').forEach((e) => e.remove())
+        img.removeAttribute('srcset')
+        return (img.src = src)
+      }
+
+      const upgradeImage = async (img) => {
+        const src =
+          ((await supportsWebP()) && img.dataset.srcWebp) || img.dataset.src
+        if (!src || img.src === src) return
+        await preloadImage(src)
+        replaceImage(img, src)
+      }
+
+      const getNodes = (query) => Array.from(document.querySelectorAll(query))
+      const withNodes = (query, fn) => Promise.all(getNodes(query).map(fn))
+      const upgradeImages = (query = 'img') => withNodes(query, upgradeImage)
+
+      // Load high res image for printing
+      // It can't be replaced on media query change, it's too late when it loads
+      const print = async () =>
+        (await upgradeImages('img.printable')) && window.print()
+
+      const isCtrlP = ({ ctrlKey, metaKey, key, charCode: c, keyCode: k }) =>
+        (ctrlKey || metaKey) &&
+        (key === 'p' || c === 16 || c === 112 || k == 80)
+
+      const handle = (test, fn) => (e) =>
+        test(e) && (e.preventDefault() || e.stopImmediatePropagation() || fn(e))
+
+      window.addEventListener('keydown', handle(isCtrlP, print))
+    </script>
   </body>
 </html>
