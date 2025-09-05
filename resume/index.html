@@ -5,7 +5,6 @@ This is a native table layout from the last millennium.
 Eye/brain hurt effect is almost inevitable ;)
 
 TODO: Switch to mobile first CSS
-TODO: Add dark/light mode detector and switch
 -->
 <html prefix="og: https://ogp.me/ns#">
   <head>
@@ -27,6 +26,7 @@ TODO: Add dark/light mode detector and switch
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="msapplication-TileColor" content="#0d59ad" />
     <meta name="theme-color" content="#404040" />
+    <meta name="darkreader-lock" />
 
     <meta property="og:title" content="Resume of Jan Killian" />
     <meta property="og:locale" content="en_US" />
@@ -46,6 +46,9 @@ TODO: Add dark/light mode detector and switch
     />
 
     <style type="text/css" media="all">
+      :root {
+        color-scheme: only light; /* Disable Chrome/Opera/Edge/Safari enforced dark mode */
+      }
       html,
       html:has(#color-scheme-light:checked) {
         --darkmode: 0;
