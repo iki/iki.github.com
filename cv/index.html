@@ -1,38 +1,73 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta http-equiv="Window-target" content="_top">
-  <meta http-equiv="Refresh" content="0; URL=/resume/">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="/resume" />
+    <meta http-equiv="refresh" content="0;url=/resume" />
+    <meta http-equiv="window-target" content="_top">
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      if (['dark', 'light'].includes(localStorage.theme)) document.documentElement.dataset.theme = localStorage.theme;
+      window.location.replace(`/resume`);
+    </script>
+    <style>
+      :root {
+        --bg: oklch(1 0 0);
+        --fg: oklch(0.145 0 0);
+        --bg-dark: oklch(0.145 0 0);
+        --fg-dark: oklch(0.985 0 0);
+      }
+      :root[data-theme='dark'] {
+        --bg: var(--bg-dark);
+        --fg: var(--fg-dark);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) {
+          --bg: var(--bg-dark);
+          --fg: var(--fg-dark);
+        }
+      }
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="msapplication-TileColor" content="#0d59ad">
-  <meta name="theme-color" content="#404040">
+      html {
+        height: 100%;
+      }
+      body {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        overflow: clip;
+        background: var(--bg);
+      }
 
-  <script language="javascript"><!--
-    top.location.href="/resume/"
-    // --></script>
+      a {
+        height: 100%;
+        width: 100%;
+        color: var(--fg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
 
-  <title>&gt;&gt;&gt;</title>
-
-  <style type="text/css"><!--
-    html { font-size: 100%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-    body { margin: 30px; font-size: 13px; line-height: 1.231; }
-    body, button, input, select, textarea { font-family: sans-serif; color: #222; }
-    a { color: #06c; font-family: verdana,arial,sans-serif; font-weight: bold; text-decoration: none; }
-    a:visited { color: #06c; }
-    a:focus { color: #f00; outline: thin dotted; }
-    a:hover, a:active { outline: 0; }
-    --></style>
-
+      span {
+        display: inline-block;
+        font-size: clamp(1rem, 10rem, 61.8vw);
+        padding-bottom: 13%;
+      }
+    </style>
   </head>
-
-<body>
-  <center>
-    <a href="/resume/" target="_top">&gt;&gt;&gt;</a>
-    </center>
-
+  <body>
+    <a href="/resume" target="_top">
+      <span>&#10155;</span>
+    </a>
   </body>
-  </html>
+</html>
