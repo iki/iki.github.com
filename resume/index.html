@@ -1759,17 +1759,22 @@
 
       // Load high res image for printing
       // It can't be replaced on media query change, it's too late when it loads
-      const print = async () =>
-        (await upgradeImages('img.printable')) && window.print()
+      const prePrint = async () => upgradeImages('img.printable')
+      const print = async () => (await prePrint()) && window.print()
+      const printPreview = async () =>
+        (await prePrint()) && window.printPreview()
+
+      const printOrPreview = async ({ shiftKey }) =>
+        shiftKey ? printPreview() : print()
 
       const isCtrlP = ({ ctrlKey, metaKey, key, charCode: c, keyCode: k }) =>
         (ctrlKey || metaKey) &&
         (key === 'p' || c === 16 || c === 112 || k == 80)
 
       const handle = (test, fn) => (e) =>
-        test(e) && (e.preventDefault() || e.stopImmediatePropagation() || fn(e))
+        test(e) && (e.preventDefault(), e.stopImmediatePropagation(), fn(e))
 
-      window.addEventListener('keydown', handle(isCtrlP, print))
+      window.addEventListener('keydown', handle(isCtrlP, printOrPreview))
     </script>
   </body>
 </html>
