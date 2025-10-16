@@ -1,11 +1,5 @@
 <!DOCTYPE html>
-<!--
-Used to HTML5, flexbox and grid? Advance carefully, then.
-This is a native table layout from the last millennium.
-Eye/brain hurt effect is almost inevitable ;)
-
-TODO: Switch to mobile first CSS
--->
+<!-- TODO: Refactor the old messy html to new astro/tailwind page with components -->
 <html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <title>Resume of Jan Killian</title>
@@ -42,7 +36,7 @@ TODO: Switch to mobile first CSS
 
     <style type="text/css">
       :root {
-        color-scheme: only light; /* Disable Chrome/Opera/Edge/Safari enforced dark mode */
+        color-scheme: only light;
       }
       html,
       html:has(#color-scheme-light:checked) {
@@ -100,32 +94,32 @@ TODO: Switch to mobile first CSS
         color: var(--primary);
         background: var(--background);
         padding: 0;
-        margin: 2.3em 8px;
+        margin: 2.3em max(8px, 5%);
+        min-width: 360px;
         transition: color 300ms ease-in;
         transition: background 300ms ease-in;
       }
       #qr {
-        text-align: right;
         position: relative;
         top: -1em;
+        text-align: center;
+        margin-right: calc(-5px * (1 - var(--darkmode)));
+        margin-bottom: -70px;
         @media print {
           top: -1.5em;
         }
       }
-      #qr img.qr-code {
+      #qr img {
+        position: relative;
+        z-index: 9999;
+        width: 100px;
+        height: 100px;
         padding: 5px;
         background-color: white;
         border-radius: 12%;
         @media print {
           padding-bottom: 1px;
         }
-      }
-      #qr .qr-code {
-        width: 70%;
-        display: inline-block;
-        box-sizing: border-box;
-        text-align: center;
-        margin-right: calc(-5px * (1 - var(--darkmode)));
       }
       .controls {
         display: flex;
@@ -210,7 +204,6 @@ TODO: Switch to mobile first CSS
         border: var(--highlight) solid 1px;
         border-radius: 1em;
         text-decoration: none;
-        /* transform: scale(0.95); */
       }
       a,
       .a-like,
@@ -226,13 +219,10 @@ TODO: Switch to mobile first CSS
         transition: transform 0.25s ease;
       }
       a.img:hover img {
-        transform: scale(1.1);
+        transform: scale(2) translate(-25%, 25%);
       }
       a.img:active {
         background: transparent;
-      }
-      a.img:active img {
-        transform: scale(0.95);
       }
       .a-like:hover {
         cursor: not-allowed;
@@ -242,7 +232,6 @@ TODO: Switch to mobile first CSS
         color: var(--background);
         background: var(--secondary);
         border-radius: 0.2em;
-        /* text-decoration: underline; */
       }
       a:active,
       a:active .note {
@@ -257,7 +246,6 @@ TODO: Switch to mobile first CSS
       }
       .note {
         font-size: 0.8em;
-        color: var(--secondary);
         vertical-align: baseline;
       }
       .contact {
@@ -269,30 +257,180 @@ TODO: Switch to mobile first CSS
         border-color: var(--secondary);
         border-width: 0 0 1px 1px;
         border-radius: 0 0 0 0.7em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
-      table {
-        margin: auto;
-      }
-      td {
-        text-align: left;
-        vertical-align: top; /* inline element attribute */
 
-        page-break-before: avoid;
-        page-break-inside: avoid;
-        page-break-after: avoid;
-        -webkit-region-break-before: avoid;
-        -webkit-region-break-inside: avoid;
-        -webkit-region-break-after: avoid;
+      .row:first-child {
+        flex-wrap: nowrap !important;
       }
-      .block td {
-        padding: 1em 0 0 0;
+      .row:first-child .position {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+      }
+      .row:first-child .where {
+        flex: 1 0 auto !important;
+        min-width: 200px !important;
+      }
+
+      .resume-container {
+        max-width: 600px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .col-1 {
+        flex: 0 0 16.666%;
+      }
+      .col-2 {
+        flex: 0 0 33.333%;
+      }
+      .col-3 {
+        flex: 0 0 50%;
+      }
+      .col-4 {
+        flex: 0 0 66.666%;
+      }
+      .col-5 {
+        flex: 0 0 83.333%;
+      }
+      .col-6 {
+        flex: 0 0 100%;
+      }
+
+      .row.block,
+      .row.block-start,
+      .row.block-end {
         page-break-inside: avoid;
         -webkit-region-break-inside: avoid;
+      }
+
+      .col-1.date {
+        text-align: right;
+      }
+
+      .row > div {
+        text-align: left;
+        vertical-align: top;
+      }
+      .motto {
+        flex: 1 0;
+        padding: 0 1.5em 0 3em;
+        text-wrap: balance;
+        display: inline-block;
+      }
+      .experience .position {
+        flex: 1 1 auto !important;
+        text-wrap: balance;
+        min-width: 0 !important;
+        display: inline-block;
+      }
+      .experience .date {
+        flex: 0 0 auto;
+        text-align: right !important;
+        white-space: nowrap !important;
+        padding-right: 0 !important;
+        display: inline-block;
+        flex-shrink: 0 !important;
+      }
+
+      .experience .position + .overview {
+        flex: 1 1 auto;
+        margin-left: 1em;
+      }
+
+      .experience .where + .date {
+        padding-bottom: 0.6em;
+      }
+      .experience .where {
+        flex: 1 0 auto;
+        text-wrap: balance;
+        white-space: wrap;
+        padding-right: 0;
+        padding-bottom: 0.4em;
+        margin-right: 0;
+      }
+      .experience .ref {
+        flex: 1 1 auto;
+        text-align: right;
+        padding-right: 0;
+        padding-left: 0;
+      }
+
+      .experience .date,
+      .experience .ref.reference {
+        text-align: right !important;
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+      }
+      .experience.row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: flex-start !important;
+      }
+
+      .experience.row .position + .date {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+
+      .experience.row .where + .ref {
+        flex-shrink: 1;
+      }
+
+      .experience .date {
+        align-self: flex-end;
+        vertical-align: bottom;
+      }
+
+      .experience .position,
+      .experience .where,
+      .experience .ref {
+        align-self: flex-start;
+        vertical-align: top;
+      }
+
+      .experience .ref.reference {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .position {
+        flex: 0 0 83.333%;
+      }
+      .where {
+        flex: 0 0 33.333%;
+      }
+      .date {
+        flex: 0 0 auto;
+        text-align: right;
+      }
+      .ref {
+        flex: 0 0 auto;
+        text-align: right;
+      }
+      .overview {
+        flex: 0 0 100%;
+        padding-bottom: 0.5em;
+      }
+      .achievements {
+        flex: 0 0 100%;
+      }
+
+      .row .position + .achievements {
+        margin-left: 3em;
+      }
+      .experience .achievements {
+        margin-left: 0 !important;
       }
       p {
         font-weight: normal;
         text-align: left;
-        text-indent: 0;
         margin: 0;
         padding: 0;
       }
@@ -302,21 +440,23 @@ TODO: Switch to mobile first CSS
         list-style: disc outside;
       }
       ul.inline {
-        margin: 0.4em 0 0 3em;
+        margin: 0 0 0 3em;
         padding: 0;
         list-style: disc outside;
       }
       ul.inner {
-        margin: 0;
+        margin: 0.4em 0 0 0;
         padding: 0;
-        list-style: disc outside;
+        list-style: disc inside;
       }
       li {
         font-weight: normal;
-        text-align: justify;
+        /* text-wrap: balance; */
         margin: 0;
         padding: 0;
-        list-style: disc outside;
+      }
+      li:not(:first-child) {
+        margin-top: 0.3em;
       }
       h1 {
         font-weight: normal;
@@ -325,6 +465,31 @@ TODO: Switch to mobile first CSS
         letter-spacing: 0.8em;
         margin: 0;
         padding: 0 1em 1em 0;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          letter-spacing: 0.4em;
+        }
+      }
+
+      @media (max-width: 500px) {
+        h1 {
+          letter-spacing: 0.2em;
+        }
+      }
+
+      @media (max-width: 450px) {
+        h1 {
+          letter-spacing: 0.1em;
+        }
+      }
+
+      @media (max-width: 400px) {
+        h1 {
+          letter-spacing: 0;
+        }
       }
       h2 {
         font-weight: normal;
@@ -337,7 +502,9 @@ TODO: Switch to mobile first CSS
       p.h3,
       p.h31,
       p.h3s,
-      p.h3s1 {
+      p.h3s1,
+      p.h3m,
+      p.h3m1 {
         font-weight: bold;
         font-size: 1.2em;
       }
@@ -353,38 +520,38 @@ TODO: Switch to mobile first CSS
       p.h3s1 {
         padding: 0 1em 0 0;
       }
+      p.h3m {
+        padding: 1.62em 1em 0.4em 0;
+      }
+      p.h3m1 {
+        padding: 0 1em 0.4em 0;
+      }
       p.h4 {
-        padding: 0.7em 1em 0.3em 0;
+        padding: 0.7em 1em 0 0;
       }
       p.h41 {
-        padding: 0 1em 0.3em 0;
+        padding: 0 1em 0 0;
       }
       p.p21 {
-        text-align: justify;
-        text-indent: 3em;
+        padding: 0 0 0 3em;
       }
       p.p2 {
-        text-align: justify;
-        text-indent: 3em;
-        padding: 0.3em 0 0 0;
+        padding: 0.3em 0 0 3em;
       }
       p.p31 {
-        text-align: justify;
-        text-indent: 3em;
-        padding: 0.3em 0 0 0;
+        padding: 0 0 0 3em;
       }
       p.p3 {
-        text-align: justify;
-        text-indent: 3em;
-        padding: 0;
+        padding: 0 0 0 3em;
       }
       .topic {
-        text-indent: 3em;
+        padding: 0 1.5em 0 3em;
+        flex: 0 0 25%;
+        white-space: nowrap;
       }
       .date {
         font-size: 0.8em;
         text-align: right;
-        vertical-align: bottom;
       }
       .date.inline {
         vertical-align: middle;
@@ -395,8 +562,7 @@ TODO: Switch to mobile first CSS
       .reference span {
         font-size: 0.8em;
       }
-      .block-start,
-      .block-start td {
+      .block-start {
         page-break-before: auto;
         page-break-inside: avoid;
         page-break-after: avoid;
@@ -404,8 +570,7 @@ TODO: Switch to mobile first CSS
         -webkit-region-break-inside: avoid;
         -webkit-region-break-after: avoid;
       }
-      .block-end,
-      .block-end td {
+      .block-end {
         page-break-before: avoid;
         page-break-inside: avoid;
         page-break-after: auto;
@@ -434,30 +599,28 @@ TODO: Switch to mobile first CSS
     </style>
   </head>
   <body>
-    <table width="600" border="0" cellspacing="0" cellpadding="0">
-      <tr class="block-start" valign="top">
-        <td colspan="4" nowrap>
+    <div class="resume-container">
+      <div class="row block-start">
+        <div class="position">
           <h1>Jan Killian</h1>
-        </td>
-        <td colspan="2" nowrap>
-          <div class="contact">
-            <a
-              rel="nofollow"
-              href="https://mailhide.io/e/2fUSS3mQ"
-              onclick="window.open('https://mailhide.io/e/2fUSS3mQ','Show Email','width=500,height=500,popup'); return false;"
-              target="Show Email"
-              title="Fill the 4 missing surname letters, or click to reveal"
-              data-rev="liamg&#X40;....lik.naj"
-              data-tld="com"
-              ><span>Jan Killian</span></a
-            >, +420-776-0-776-76<br />
-            20&nbsp;Sokolská&nbsp;St., Prague&nbsp;2,
-            120&nbsp;00,&nbsp;CZ,&nbsp;EU
-          </div>
-        </td>
-      </tr>
-      <tr class="skip-print">
-        <td colspan="6" nowrap>
+        </div>
+        <div class="contact">
+          <a
+            rel="nofollow"
+            href="https://mailhide.io/e/2fUSS3mQ"
+            onclick="window.open('https://mailhide.io/e/2fUSS3mQ','Show Email','width=500,height=500,popup'); return false;"
+            target="Show Email"
+            title="Fill the 4 missing surname letters, or click to reveal"
+            data-rev="liamg&#X40;....lik.naj"
+            data-tld="com"
+            ><span>Jan Killian</span></a
+          >, +420-776-0-776-76<br />
+          20&nbsp;Sokolská&nbsp;St., Prague&nbsp;2,
+          120&nbsp;00,&nbsp;CZ,&nbsp;EU
+        </div>
+      </div>
+      <div class="row skip-print">
+        <div class="overview">
           <div class="controls">
             <a
               title="Download PDF"
@@ -530,66 +693,65 @@ TODO: Switch to mobile first CSS
               </span>
             </a>
           </div>
-        </td>
-      </tr>
-      <tr>
-        <td width="130px%" nowrap>&nbsp;</td>
-        <td width="170px" nowrap>&nbsp;</td>
-        <td width="55px%" nowrap>&nbsp;</td>
-        <td width="55px" nowrap>&nbsp;</td>
-        <td width="60px" nowrap>&nbsp;</td>
-        <td id="qr" width="130px" rowspan="3">
-          <a title="iki.bio.link" class="img" href="https://iki.bio.link">
-            <picture>
-              <source
-                srcset="qr-iki-100.webp, qr-iki-200.webp 2x, qr-iki-400.webp 4x"
-                type="image/webp"
-              />
-              <source
-                srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
-                type="image/png"
-              />
-              <img
-                alt="iki.bio.link"
-                class="qr-code printable"
-                src="qr-iki-200.png"
-                srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
-                data-src="qr-iki-400.png"
-                data-src-webp="qr-iki-400.webp"
-              />
-            </picture>
-          </a>
-          <span class="qr-code skip-screen">
+        </div>
+      </div>
+
+      <div class="row block-end">
+        <div class="motto">
+          <em
+            >First make it <b>work</b>. Then, make it <b>beautiful</b>. Then,
+            make it <b>fast</b>.</em
+          >
+          <span class="note"
+            >—
+            <a
+              title="Become Efficient or Die: The Story of BackType"
+              href="https://slideshare.net/nathanmarz/become-efficient-or-die-the-story-of-backtype"
+              target="_blank"
+              >BackType</a
+            ></span
+          >
+        </div>
+        <div class="date" id="qr">
+          <div class="img">
+            <a title="iki.bio.link" href="https://iki.bio.link">
+              <picture>
+                <source
+                  srcset="
+                    qr-iki-100.webp,
+                    qr-iki-200.webp 2x,
+                    qr-iki-400.webp 4x
+                  "
+                  type="image/webp"
+                />
+                <source
+                  srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
+                  type="image/png"
+                />
+                <img
+                  alt="iki.bio.link"
+                  class="printable"
+                  src="qr-iki-200.png"
+                  srcset="qr-iki-100.png, qr-iki-200.png 2x, qr-iki-400.png 4x"
+                  data-src="qr-iki-400.png"
+                  data-src-webp="qr-iki-400.webp"
+                />
+              </picture>
+            </a>
+          </div>
+          <div class="skip-screen">
             <a class="button" href="https://iki.bio.link">iki.bio.link</a>
-          </span>
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="5">
-          <p class="p21">
-            <em
-              >First make it <b>work</b>. Then, make it <b>beautiful</b>. Then,
-              make it <b>fast</b>.</em
-            >
-            <span class="note"
-              >—
-              <a
-                title="Become Efficient or Die: The Story of BackType"
-                href="https://slideshare.net/nathanmarz/become-efficient-or-die-the-story-of-backtype"
-                target="_blank"
-                >BackType</a
-              ></span
-            >
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="5" nowrap>
+          </div>
+        </div>
+      </div>
+
+      <div class="row block-start">
+        <div class="position">
           <h2>About</h2>
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="row block-end">
+        <div class="overview">
           <p class="p21">
             I'm a Fullstack Software Engineer with strong product, team play and
             technology focus.
@@ -620,20 +782,20 @@ TODO: Switch to mobile first CSS
               >@jankillian</a
             >.
           </p>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start">
-        <td colspan="6" nowrap>
+      <div class="row block-start">
+        <div class="overview">
           <h2>Skills</h2>
-        </td>
-      </tr>
-      <tr valign="top">
-        <td nowrap class="">
-          <div class="topic">Highlights:</div>
-        </td>
-        <td colspan="5">
-          <ul class="inner">
+        </div>
+      </div>
+      <div class="row block">
+        <p class="h3m1">
+          <b>Highlights</b>
+        </p>
+        <div class="achievements">
+          <ul class="inline">
             <li>3 years of AI-assisted and spec-driven development</li>
             <li>
               20 years of development experience, agile process, owning the
@@ -652,14 +814,12 @@ TODO: Switch to mobile first CSS
               zones
             </li>
           </ul>
-        </td>
-      </tr>
-      <tr class="block" valign="top">
-        <td nowrap>
-          <div class="topic">Technologies:</div>
-        </td>
-        <td colspan="5">
-          <ul class="inner">
+        </div>
+      </div>
+      <div class="row block">
+        <p class="h3m">Technologies</p>
+        <div class="achievements">
+          <ul class="inline">
             <li>
               <b>Node.js</b> / <b>TypeScript</b> / <b>Python</b> backend,
               <b>GraphQL</b>/REST API design, OWASP
@@ -677,31 +837,31 @@ TODO: Switch to mobile first CSS
               <b>Kubernetes</b>, <b>Docker</b>, Linux
             </li>
           </ul>
-        </td>
-      </tr>
-      <tr class="block block-end" valign="top">
-        <td nowrap>
-          <div class="topic">Languages:</div>
-        </td>
-        <td colspan="5">Czech (native), English (advanced)<br /></td>
-      </tr>
+        </div>
+      </div>
+      <div class="row block block-end">
+        <p class="h3m">Languages</p>
+        <div class="achievements">
+          <p class="p31">Czech (native), English (advanced)</p>
+        </div>
+      </div>
 
-      <tr>
-        <td colspan="6" nowrap>
+      <div class="row block-start">
+        <div class="overview">
           <h2>Experience</h2>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr valign="bottom">
-        <td colspan="5">
+      <div class="experience row block">
+        <div class="position">
           <p class="h3s1">
             <b>Software Engineer</b>
           </p>
-        </td>
-        <td class="date" nowrap>2023-2025<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2023-2025<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://beafuture.com/"
             title="Be a Future delivers IT solutions and development services for government administration"
@@ -715,8 +875,8 @@ TODO: Switch to mobile first CSS
             >NCIKT PČR</a
           >
           <br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
@@ -725,10 +885,10 @@ TODO: Switch to mobile first CSS
               >Michal Fidler</a
             >, Team Lead, PČR</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Lead development of modern application dev stack for Czech
             <a
@@ -738,6 +898,10 @@ TODO: Switch to mobile first CSS
               >National ICT Center</a
             >
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Developed TypeScript/Node.js GraphQL API backend for existing
@@ -756,19 +920,19 @@ TODO: Switch to mobile first CSS
               Azure DevOps pipelines
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Software Engineer</b>
           </p>
-        </td>
-        <td class="date" nowrap>2020-2022<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2020-2022<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://oakslab.com"
             title="OAK'S LAB is a technology partner for startups, empowering innovators to build their products and scale their teams"
@@ -776,8 +940,8 @@ TODO: Switch to mobile first CSS
             >OAK'S LAB</a
           >
           <br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
@@ -786,14 +950,18 @@ TODO: Switch to mobile first CSS
               >Theo Dluhy-Smith</a
             >, COO & Founder</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Developed backends and frontends (80/20) on agile startup projects
             in full-remote mode
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Designed and developed backend architecture, data models,
@@ -826,19 +994,19 @@ TODO: Switch to mobile first CSS
               >
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Software Consultant</b>
           </p>
-        </td>
-        <td class="date" nowrap>2019<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2019<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://www.saboit.de"
             title="SABO Mobile IT GmbH delivers modern Industry 4.0 applications"
@@ -846,8 +1014,8 @@ TODO: Switch to mobile first CSS
             >SABO Mobile IT</a
           >
           <br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
@@ -856,14 +1024,18 @@ TODO: Switch to mobile first CSS
               >Pavel Zdeněk</a
             >, Solution Architect</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Prototyped GraphQL migration of complex Audi digital planning
             assistant application
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Developed TypeScript GraphQL backend on top of existing MSSQL
@@ -874,19 +1046,19 @@ TODO: Switch to mobile first CSS
               workshop for the development team
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr valign="bottom">
-        <td colspan="5">
+      <div class="experience row">
+        <div class="position">
           <p class="h3s">
             <b>Software Engineer</b>
           </p>
-        </td>
-        <td class="date" nowrap>2017-2018<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2017-2018<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://digital.pwc.ch"
             title="The Experience Center delivers rapid agile application prototypes based on modern technologies"
@@ -898,8 +1070,8 @@ TODO: Switch to mobile first CSS
             ></a
           >
           <br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
@@ -908,13 +1080,17 @@ TODO: Switch to mobile first CSS
               >Andreas Leicher</a
             >, Agile Architect</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Developed rapid agile applications in a full-remote team
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Co-developed frontends with React, GraphQL, Recharts, Material-UI,
@@ -925,19 +1101,19 @@ TODO: Switch to mobile first CSS
               (Python, PubSub, MongoDB)
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Software Engineer</b>
           </p>
-        </td>
-        <td class="date" nowrap>2016-2017<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2016-2017<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://www.crunchbase.com/organization/stories-3"
             title="Stories delivered first working Augmented Analytics product on the market"
@@ -953,45 +1129,45 @@ TODO: Switch to mobile first CSS
             >
           </span>
           <br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
               href="https://linkedin.com/in/peterfedorocko"
               title="Peter managed engineering. He can give you references to my work"
               >Peter Fedoročko</a
-            >, Founder, Head of Engineering</span
+            >, Founder, CEO</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="overview">
           <p class="p31">
             Co-developed Augmented Analytics frontend with React, Redux, Apollo
             GraphQL, HighCharts
           </p>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Software Engineer</b>
           </p>
-        </td>
-        <td class="date" nowrap>2013-2016<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2013-2016<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://salsitasoft.com"
             title="Salsita Software delivers modern web/mobile applications development"
             target="_blank"
             >Salsita Software</a
           ><br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
@@ -1000,14 +1176,18 @@ TODO: Switch to mobile first CSS
               >Roman Kaspar</a
             >, Director of Engineering</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Developed web applications with React, Redux, Angular, Flask, REST,
             RAML and MySQL
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Co-developed Balfour MyYear photo manager with React, Redux, SVG
@@ -1027,19 +1207,19 @@ TODO: Switch to mobile first CSS
               major british TV's
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Head of Software Development</b>
           </p>
-        </td>
-        <td class="date" nowrap>2012-2013<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2012-2013<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://netmail.cz"
             title="Netmail helps businesses to move in the cloud and leads Google Apps deployments in Czech Republic"
@@ -1054,24 +1234,28 @@ TODO: Switch to mobile first CSS
               >(expanded to Revolgy)</a
             > </span
           ><br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
               href="https://linkedin.com/in/bohuslavdohnal"
               title="Bohuslav managed projects I worked on. He can give you references to my work"
               >Bohuslav Dohnal</a
-            >, Managing Director</span
+            >, CEO</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Lead development projects using Python, Google App Engine and Google
             Apps
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>Developed Google App Engine Python backends and REST APIs</li>
             <li>
@@ -1079,38 +1263,42 @@ TODO: Switch to mobile first CSS
               documents and document changes
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Software Developer</b>
           </p>
-        </td>
-        <td class="date" nowrap>2010-2011<br /></td>
-      </tr>
-      <tr>
-        <td class="a-like" colspan="2" nowrap>
+        </div>
+        <div class="date">2010-2011<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where a-like">
           Multiple startups and customers
           <br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
               href="https://linkedin.com/in/tomby"
               title="Tomáš Bílý lead group of researchers working on startups at Faculty of Mathematics and Physics at Charles University (MFF UK). He can give you references to my work"
               >Tomáš Bílý</a
-            >, MFF UK Researcher and Developer</span
+            >, MFF UK R&amp;D</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Developed projects using Python, Linux and Google App Engine
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Developed prototype of p2p cloud VPN node management with Python,
@@ -1120,27 +1308,27 @@ TODO: Switch to mobile first CSS
               Developed prototypes of REST API backends on Google App Engine
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Software Developer</b>
           </p>
-        </td>
-        <td class="date" nowrap>2005-2009<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2005-2009<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://commerzbank.cz"
             title="The development centre in Prague was started in 2005 and brought agile development methods to the company"
             target="_blank"
             >Commerzbank</a
           ><br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
@@ -1149,14 +1337,18 @@ TODO: Switch to mobile first CSS
               >Ryan McGloin</a
             >, Local Head ADS</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Developed Intranet applications, CI, security tests, tools for
             reporting, integration and management
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Lead development of Intranet CMS applications in Firstspirit,
@@ -1178,27 +1370,27 @@ TODO: Switch to mobile first CSS
               Co-developed the Application Security Test Concept based on OWASP
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>IT&amp;eB Executive</b>
           </p>
-        </td>
-        <td class="date" nowrap>2002-2004<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">2002-2004<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://pfizer.com"
             title="Wyeth Czech was a local office of major worldwide pharmaceutical company, acquired by Pfizer in 2009"
             target="_blank"
             >Wyeth <span class="note">(acquired by Pfizer)</span></a
           ><br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               rel="nofollow"
@@ -1207,13 +1399,17 @@ TODO: Switch to mobile first CSS
               >Vladimír Chmela</a
             >, CFO</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Responsible for IT of Czech branch in a global network
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>Planned budget and managed assets, suppliers and services</li>
             <li>
@@ -1233,27 +1429,27 @@ TODO: Switch to mobile first CSS
               upgrade and country intranet setup
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>MIS Technician</b>
           </p>
-        </td>
-        <td class="date" nowrap>1999-2000<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2">
+        </div>
+        <div class="date">1999-2000<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://trw.com"
             title="TRW-Carr is a local factory of Seat Belt Systems division of TRW Automotive, acquired by ZF Friedrichshafen in 2015"
             target="_blank"
             >TRW <span class="note">(acquired by ZF)</span></a
           >
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               rel="nofollow"
@@ -1262,14 +1458,18 @@ TODO: Switch to mobile first CSS
               >Shahed Jamal Ashraf</a
             >, CFO</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">
             Responsible for Brain XPPS production planning and control system,
             co-responsible for IT
           </p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Managed XPPS on AS/400, provided data reports for F&amp;A,
@@ -1281,23 +1481,26 @@ TODO: Switch to mobile first CSS
             </li>
             <li>Coordinated warehouse inventories with CFO</li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
-            <b>User Support Technician (Civil Service)</b>
+            <b
+              >User Support Technician
+              <span class="note">(Civil Service)</span></b
+            >
           </p>
-        </td>
-        <td class="date">1998-1999<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2">
+        </div>
+        <div class="date">1998-1999<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a href="https://vse.cz" target="_blank">University of Economics</a>
           <br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               target="blank"
@@ -1306,11 +1509,15 @@ TODO: Switch to mobile first CSS
               >Jan Havlíček</a
             >, Support Manager</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">Supported 1500+ employees in a 3-member team</p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Installed new hardware and software, reimplemented image based
@@ -1321,27 +1528,27 @@ TODO: Switch to mobile first CSS
               college network
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Network Administrator</b>
           </p>
-        </td>
-        <td class="date" nowrap>1996-2002<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2" nowrap>
+        </div>
+        <div class="date">1996-2002<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="http://hmedia.cz"
             title="H-Media provides an in-board healthcare advertisement network in Czech Republic"
             target="_blank"
             >H-Media</a
           ><br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               href="https://mailhide.io/e/FItgMgSr"
@@ -1350,31 +1557,35 @@ TODO: Switch to mobile first CSS
               >Michal Ouzký</a
             >, Technical Manager</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">Responsible for IT</p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Implemented and managed Novell NetWare 4.11/5.1 network with
-              ZENWorks, Windows 95/98/NT, Internet, e-mail, backup, security and
+              ZENWorks, Windows 95/98/NT, Internet, email, backup, security and
               data exchange solutions
             </li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
             <b>Network Administrator</b>
           </p>
-        </td>
-        <td class="date" nowrap>1994-1997<br /></td>
-      </tr>
-      <tr>
-        <td colspan="2">
+        </div>
+        <div class="date">1994-1997<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <a
             href="https://outdoor-akzent.cz"
             title="Billboard provided a billboard advertisement network in Czech Republic, acquired by Akzent Media in 1996, acquired by BigBoard in 2013"
@@ -1382,122 +1593,131 @@ TODO: Switch to mobile first CSS
             >Billboard
             <span class="note">(acquired by Akzent / BigBoard)</span></a
           ><br />
-        </td>
-        <td colspan="4" class="reference">
+        </div>
+        <div class="ref reference">
           <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
             ><a
               rel="nofollow"
               href="https://rejstriky.finance.cz/firma-stepan-hutla-04178122"
               title="I did report to Štěpán Hutla. He can give you references to my work"
               >Štěpán Hutla</a
-            >, Technical Director</span
+            >, CTO</span
           >
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="p31">Responsible for IT</p>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="achievements">
           <ul class="inline">
             <li>
               Setup Novell NetWare 3.12/4.11 network with Windows 3.1/95,
-              Internet, e-mail, backup, security
+              Internet, email, backup, security
             </li>
             <li>Managed development of campaign building client application</li>
           </ul>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start" valign="bottom">
-        <td colspan="5">
+      <div class="experience row block-start">
+        <div class="position">
           <p class="h3s">
-            <b>Network Administrator (Scholarship Activity)</b>
+            <b
+              >Network Administrator
+              <span class="note">(Scholarship Activity)</span></b
+            >
           </p>
-        </td>
-        <td class="date" nowrap>1994-1995<br /></td>
-      </tr>
-      <tr>
-        <td colspan="6">
-          <a href="https://mff.cuni.cz" target="_blank"
-            >Faculty of Mathematics and Physics</a
-          >
-          at&nbsp;<a href="https://cuni.cz" target="_blank"
-            >Charles&nbsp;University</a
-          >
-          (MFF&nbsp;UK)
-        </td>
-      </tr>
-      <tr class="block-end">
-        <td colspan="6">
+        </div>
+        <div class="date">1994-1995<br /></div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
+          <a href="https://mff.cuni.cz" target="_blank">MFF UK</a>
+          <span class="note"
+            >&mdash;&nbsp;<a href="https://mff.cuni.cz" target="_blank">
+              Faculty of Mathematics and Physics</a
+            >
+            at&nbsp;<a href="https://cuni.cz" target="_blank"
+              >Charles&nbsp;University</a
+            >
+          </span>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="overview">
           <p class="p31">
             Co-administered Novell NetWare 3.11 computing lab network
           </p>
-        </td>
-      </tr>
+        </div>
+      </div>
 
-      <tr class="block-start">
-        <td colspan="6" nowrap>
+      <div class="experience row block-start">
+        <div class="overview">
           <h2>Education</h2>
-        </td>
-      </tr>
-      <tr valign="bottom">
-        <td colspan="6">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
           <p class="h31">
             <b>Secondary and University Education</b>
           </p>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="5">
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="where">
           <p class="h41">
             <a href="https://cuni.cz/zborovska" target="_blank"
               >Gymnázium Korunní -&nbsp;Zborovská</a
             >
           </p>
-        </td>
-        <td class="date" nowrap>1990-1994</td>
-      </tr>
-      <tr valign="top">
-        <td nowrap>
-          <p class="topic">Specialization:</p>
-        </td>
-        <td colspan="5">Mathematics</td>
-      </tr>
-      <tr valign="top">
-        <td nowrap>
-          <p class="topic">Degree earned:</p>
-        </td>
-        <td colspan="5">Maturita (General Certificate of Education)</td>
-      </tr>
+        </div>
+        <div class="date">1990-1994</div>
+      </div>
+      <div class="experience row block">
+        <div class="topic">Specialization:</div>
+        <div class="overview">Mathematics</div>
+      </div>
+      <div class="experience row block-end">
+        <div class="topic">Degree earned:</div>
+        <div class="overview">
+          Maturita <span class="note">(General Certificate of Education)</span>
+        </div>
+      </div>
 
-      <tr class="block-start">
-        <td colspan="5" nowrap>
+      <div class="experience row block-start">
+        <div class="where">
           <p class="h4">
-            <a href="https://mff.cuni.cz" target="_blank"
-              >Faculty of Mathematics and Physics</a
-            >
-            at&nbsp;<a href="https://cuni.cz" target="_blank"
-              >Charles&nbsp;University</a
-            >
-            (MFF&nbsp;UK)
+            <a href="https://mff.cuni.cz" target="_blank">MFF UK</a>
+            <span class="note"
+              >&mdash;&nbsp;<a href="https://mff.cuni.cz" target="_blank">
+                Faculty of Mathematics and Physics</a
+              >
+              at&nbsp;<a href="https://cuni.cz" target="_blank"
+                >Charles&nbsp;University</a
+              >
+            </span>
           </p>
-        </td>
-        <td class="date">1994-1997</td>
-      </tr>
-      <tr valign="top">
-        <td nowrap>
-          <p class="topic">Study branch:</p>
-        </td>
-        <td colspan="5">Master Study (MSc.) of Computer Science</td>
-      </tr>
-      <tr class="block-end" valign="top">
-        <td colspan="6">
+        </div>
+        <div class="date">1994-1997</div>
+      </div>
+      <div class="experience row block">
+        <div class="topic">Study branch:</div>
+        <div class="overview">
+          MSc in Computer Science <span class="note">(MSCS)</span>
+        </div>
+      </div>
+      <div class="experience row block-end">
+        <div class="overview">
           <p class="p3">
-            Interrupted in the fourth semester due to time constraints with 2
-            parallel jobs (above)
+            Interrupted in the fourth semester due to time constraints with two
+            parallel jobs
           </p>
-        </td>
-      </tr>
-    </table>
+        </div>
+      </div>
+    </div>
 
     <script>
       const Support = {}
