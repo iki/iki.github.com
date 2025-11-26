@@ -35,6 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style type="text/css">
+      /* Settings */
       :root {
         color-scheme: only light;
       }
@@ -43,7 +44,8 @@
         --darkmode: 0;
         --background: #fff;
         --primary: #444;
-        --secondary: #3965a0;
+        --secondary: #999;
+        --link: #3965a0;
         --highlight: #4fba81;
       }
       @media screen {
@@ -51,7 +53,8 @@
           --darkmode: 1;
           --background: #293344;
           --primary: #e1ded8;
-          --secondary: #bddaff;
+          --secondary: #c1beb8;
+          --link: #bddaff;
           --highlight: #67f3a8;
         }
         @media (prefers-color-scheme: dark) {
@@ -59,7 +62,8 @@
             --darkmode: 1;
             --background: #293344;
             --primary: #e1ded8;
-            --secondary: #bddaff;
+            --secondary: #c1beb8;
+            --link: #bddaff;
             --highlight: #67f3a8;
           }
         }
@@ -77,19 +81,22 @@
         }
       }
       @media screen and (max-width: 640px) {
-        body {
-          font-size: 0.82em;
-        }
         .controls,
         #qr {
           padding-right: 4px;
         }
       }
+      ::selection {
+        color: var(--background);
+        background: var(--highlight);
+      }
+
+      /* Layout */
       body {
-        font-size: 0.7em;
         -webkit-text-size-adjust: none;
         -moz-text-size-adjust: none;
         -ms-text-size-adjust: none;
+        font-size: 0.9em;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color: var(--primary);
         background: var(--background);
@@ -99,80 +106,18 @@
         transition: color 300ms ease-in;
         transition: background 300ms ease-in;
       }
-      #qr {
-        position: relative;
-        top: -1em;
-        text-align: center;
-        margin-right: calc(-5px * (1 - var(--darkmode)));
-        margin-bottom: -70px;
-        @media print {
-          top: -1.5em;
-        }
-      }
-      #qr img {
-        position: relative;
-        z-index: 9999;
-        width: 100px;
-        height: 100px;
-        padding: 5px;
-        background-color: white;
-        border-radius: 12%;
-        @media print {
-          padding-bottom: 1px;
-        }
-      }
-      .controls {
+      .resume-container {
+        max-width: 700px;
+        margin: auto;
         display: flex;
-        justify-content: flex-end;
-        position: relative;
-        top: -1.85em;
-        gap: 0.75em;
+        flex-direction: column;
       }
-      .svg-icon svg {
-        height: 1em;
-        width: 1em;
-      }
-      .toggle-group {
-        padding: 0;
-        margin: 0;
-        display: inline-flex;
-        align-self: baseline;
-      }
-      .toggle-group .svg-icon {
-        display: inline-flex;
-      }
-      .toggle-group input {
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        position: absolute;
-      }
-      .toggle-group label {
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer;
-        padding: 0.1em 0.3em;
-      }
-      .toggle-group label:first-child {
-        border-radius: 0.7em 0 0 0.7em;
-      }
-      .toggle-group label:last-child {
-        border-radius: 0 0.7em 0.7em 0;
-      }
-      .toggle-group label:has(input:checked) {
-        cursor: default;
-        color: var(--secondary);
-        background: transparent;
-        opacity: 50%;
-      }
-      .toggle-group label:hover {
-        color: var(--background);
-        background: var(--secondary);
-      }
+
+      /* Elements */
       a.button,
       .toggle-group {
-        color: var(--secondary);
-        font-size: 0.8em;
+        color: var(--link);
+        font-size: 1.2em;
         letter-spacing: 0.1em;
         white-space: nowrap;
         user-select: none;
@@ -184,7 +129,10 @@
         width: 1.25em;
       }
       a.button.print {
-        padding: 0.2em 0.25em 0 0.25em;
+        padding: 0.2em 0.23em 0 0.23em;
+      }
+      a.button.download {
+        padding: 0.2em 0.17em 0 0.26em;
       }
       a.button {
         display: inline-block;
@@ -193,8 +141,8 @@
       }
       a.button:hover {
         color: var(--background);
-        background: var(--secondary);
-        border: var(--secondary) solid 1px;
+        background: var(--link);
+        border: var(--link) solid 1px;
         border-radius: 1em;
         text-decoration: none;
       }
@@ -206,11 +154,11 @@
         text-decoration: none;
       }
       a,
-      .a-like,
+      .link-like,
       a.img:hover,
       a.img:active {
         border-style: none none;
-        color: var(--secondary);
+        color: var(--link);
         background: transparent;
         text-decoration: none;
         transition: transform 0.25s ease;
@@ -224,13 +172,10 @@
       a.img:active {
         background: transparent;
       }
-      .a-like:hover {
-        cursor: not-allowed;
-      }
       a:hover,
       a:hover .note {
         color: var(--background);
-        background: var(--secondary);
+        background: var(--link);
         border-radius: 0.2em;
       }
       a:active,
@@ -239,193 +184,6 @@
         background: var(--highlight);
         border-radius: 0.2em;
         text-decoration: none;
-      }
-      ::selection {
-        color: var(--background);
-        background: var(--secondary);
-      }
-      .note {
-        font-size: 0.8em;
-        vertical-align: baseline;
-      }
-      .contact {
-        flex: 0 1 auto;
-        font-size: 0.8em;
-        text-align: right !important;
-        margin-top: 0.4em;
-        padding: 0 0 1px 3px;
-        border-style: solid;
-        border-color: var(--secondary);
-        border-width: 0 0 1px 1px;
-        border-radius: 0 0 0 0.7em;
-        white-space: nowrap;
-      }
-
-      .row:first-child {
-        flex-wrap: nowrap !important;
-      }
-      .row:first-child .position {
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-      }
-      .row:first-child .where {
-        flex: 1 0 auto !important;
-        min-width: 200px !important;
-      }
-
-      .resume-container {
-        max-width: 600px;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-      }
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-      }
-      .col-1 {
-        flex: 0 0 16.666%;
-      }
-      .col-2 {
-        flex: 0 0 33.333%;
-      }
-      .col-3 {
-        flex: 0 0 50%;
-      }
-      .col-4 {
-        flex: 0 0 66.666%;
-      }
-      .col-5 {
-        flex: 0 0 83.333%;
-      }
-      .col-6 {
-        flex: 0 0 100%;
-      }
-
-      .row.block,
-      .row.block-start,
-      .row.block-end {
-        page-break-inside: avoid;
-        -webkit-region-break-inside: avoid;
-      }
-
-      .col-1.date {
-        text-align: right;
-      }
-
-      .row > div {
-        text-align: left;
-        vertical-align: top;
-      }
-      .motto {
-        flex: 1 0;
-        padding: 0 1.5em 0 3em;
-        text-wrap: balance;
-        display: inline-block;
-      }
-      .experience .position {
-        flex: 1 1 auto !important;
-        text-wrap: balance;
-        min-width: 0 !important;
-        display: inline-block;
-      }
-      .experience .date {
-        flex: 0 0 auto;
-        text-align: right !important;
-        white-space: nowrap !important;
-        padding-right: 0 !important;
-        display: inline-block;
-        flex-shrink: 0 !important;
-      }
-
-      .experience .position + .overview {
-        flex: 1 1 auto;
-        margin-left: 1em;
-      }
-
-      .experience .where + .date {
-        padding-bottom: 0.6em;
-      }
-      .experience .where {
-        flex: 1 0 auto;
-        text-wrap: balance;
-        white-space: wrap;
-        padding-right: 0;
-        padding-bottom: 0.4em;
-        margin-right: 0;
-      }
-      .experience .ref {
-        flex: 1 1 auto;
-        text-align: right;
-        padding-right: 0;
-        padding-left: 0;
-      }
-
-      .experience .date,
-      .experience .ref.reference {
-        text-align: right !important;
-        padding-right: 0 !important;
-        margin-right: 0 !important;
-      }
-      .experience.row {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        align-items: flex-start !important;
-      }
-
-      .experience.row .position + .date {
-        flex-shrink: 0;
-        white-space: nowrap;
-      }
-
-      .experience.row .where + .ref {
-        flex-shrink: 1;
-      }
-
-      .experience .date {
-        align-self: flex-end;
-        vertical-align: bottom;
-      }
-
-      .experience .position,
-      .experience .where,
-      .experience .ref {
-        align-self: flex-start;
-        vertical-align: top;
-      }
-
-      .experience .ref.reference {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-      }
-      .position {
-        flex: 0 0 83.333%;
-      }
-      .where {
-        flex: 0 0 33.333%;
-      }
-      .date {
-        flex: 0 0 auto;
-        text-align: right;
-      }
-      .ref {
-        flex: 0 0 auto;
-        text-align: right;
-      }
-      .overview {
-        flex: 0 0 100%;
-        padding-bottom: 0.5em;
-      }
-      .achievements {
-        flex: 0 0 100%;
-      }
-
-      .row .position + .achievements {
-        margin-left: 3em;
-      }
-      .experience .achievements {
-        margin-left: 0 !important;
       }
       p {
         font-weight: normal;
@@ -450,7 +208,6 @@
       }
       li {
         font-weight: normal;
-        /* text-wrap: balance; */
         margin: 0;
         padding: 0;
       }
@@ -459,40 +216,16 @@
       }
       h1 {
         font-weight: normal;
-        font-size: 2.2em;
+        font-size: 2em;
         text-decoration: none;
-        letter-spacing: 0.8em;
+        letter-spacing: 0.4em;
         margin: 0;
         padding: 0 1em 1em 0;
         white-space: nowrap;
       }
-
-      @media (max-width: 600px) {
-        h1 {
-          letter-spacing: 0.4em;
-        }
-      }
-
-      @media (max-width: 500px) {
-        h1 {
-          letter-spacing: 0.2em;
-        }
-      }
-
-      @media (max-width: 450px) {
-        h1 {
-          letter-spacing: 0.1em;
-        }
-      }
-
-      @media (max-width: 400px) {
-        h1 {
-          letter-spacing: 0;
-        }
-      }
       h2 {
         font-weight: normal;
-        font-size: 1.7em;
+        font-size: 1.6em;
         text-decoration: none;
         letter-spacing: 0.5em;
         margin: 0;
@@ -505,7 +238,7 @@
       p.h3m,
       p.h3m1 {
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.15em;
       }
       p.h3 {
         padding: 1.62em 1em 1em 0;
@@ -543,23 +276,56 @@
       p.p3 {
         padding: 0 0 0 3em;
       }
-      .topic {
-        padding: 0 1.5em 0 3em;
-        flex: 0 0 25%;
-        white-space: nowrap;
+      .svg-icon svg {
+        height: 1em;
+        width: 1em;
       }
-      .date {
-        font-size: 0.8em;
-        text-align: right;
+      .toggle-group {
+        padding: 0;
+        margin: 0;
+        display: inline-flex;
+        align-self: baseline;
       }
-      .date.inline {
-        vertical-align: middle;
+      .toggle-group .svg-icon {
+        display: inline-flex;
       }
-      .reference {
-        text-align: right;
+      .toggle-group input {
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        position: absolute;
       }
-      .reference span {
-        font-size: 0.8em;
+      .toggle-group label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0.1em 0.3em;
+      }
+      .toggle-group label:first-child {
+        border-radius: 0.7em 0 0 0.7em;
+      }
+      .toggle-group label:last-child {
+        border-radius: 0 0.7em 0.7em 0;
+      }
+      .toggle-group label:has(input:checked) {
+        cursor: default;
+        color: var(--link);
+        background: transparent;
+        opacity: 50%;
+      }
+      .toggle-group label:hover {
+        color: var(--background);
+        background: var(--link);
+      }
+      .new-page {
+        page-break-before: always !important;
+        -webkit-region-break-before: always !important;
+      }
+      .block,
+      .block-start,
+      .block-end {
+        page-break-inside: avoid;
+        -webkit-region-break-inside: avoid;
       }
       .block-start {
         page-break-before: auto;
@@ -577,9 +343,103 @@
         -webkit-region-break-inside: avoid;
         -webkit-region-break-after: auto;
       }
-      .new-page {
-        page-break-before: always !important;
-        -webkit-region-break-before: always !important;
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      /* Components */
+      .header,
+      .motto-row {
+        flex-wrap: nowrap !important;
+      }
+      .header h1 {
+        @media (max-width: 679px) {
+          letter-spacing: 0.3em;
+        }
+        @media (max-width: 629px) {
+          letter-spacing: 0.2em;
+        }
+        @media (max-width: 579px) {
+          display: none;
+        }
+      }
+      .motto {
+        flex: 1 1 auto;
+        padding: 0 1em 0 3em;
+        text-wrap: balance;
+        display: inline-block;
+      }
+      .motto h1 {
+        margin-top: 0.5em;
+        margin-left: -1.5em;
+        padding-right: 0;
+        @media (min-width: 580px) {
+          display: none;
+        }
+      }
+      .qr {
+        text-align: center;
+        margin-bottom: -70px;
+        margin-right: calc(-5px * (1 - var(--darkmode)));
+        width: 110px;
+        @media (max-width: 569px) {
+          margin-bottom: -60px;
+        }
+        @media (max-width: 459px) {
+          width: 100px;
+          margin-bottom: -50px;
+        }
+        @media (max-width: 449px) {
+          width: 90px;
+          margin-bottom: -40px;
+        }
+        @media (max-width: 439px) {
+          width: 80px;
+          margin-bottom: -30px;
+        }
+        @media (max-width: 429px) {
+          width: 70px;
+          margin-bottom: -20px;
+        }
+        @media (max-width: 419px) {
+          width: 60px;
+          margin-bottom: -10px;
+        }
+        @media (max-width: 409px) {
+          width: 50px;
+          margin-bottom: 0;
+        }
+        @media (max-width: 389px) {
+          display: none;
+        }
+        @media print {
+          top: -1.5em;
+        }
+      }
+      .qr img {
+        z-index: 9999;
+        width: calc(100% - 10px);
+        height: auto;
+        padding: 5px;
+        background-color: white;
+        border-radius: 12%;
+        @media print {
+          padding-bottom: 1px;
+        }
+      }
+      .contact {
+        flex: 0 1 auto;
+        font-size: 0.8em;
+        text-align: right !important;
+        margin-top: 0.4em;
+        padding: 0 0 1px 3px;
+        border-style: solid;
+        border-color: var(--link);
+        border-width: 0 0 1px 1px;
+        border-radius: 0 0 0 0.7em;
+        white-space: nowrap;
       }
       .contact a {
         display: inline-block;
@@ -595,39 +455,110 @@
       .contact a:after {
         content: '\002e'attr(data-tld);
       }
+      .controls {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0.8em 0 1.3em 0;
+        gap: 0.75em;
+      }
+      .experience {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+      }
+      .position,
+      .where,
+      .reference {
+        align-self: flex-start;
+        vertical-align: top;
+      }
+      .position {
+        flex: 1 1 auto;
+        text-wrap: balance;
+        display: inline-block;
+      }
+      .where {
+        flex: 1 0 auto;
+        text-wrap: balance;
+        white-space: wrap;
+        padding-right: 0;
+        padding-bottom: 0.4em;
+        margin-right: 0;
+      }
+      .reference {
+        flex: 0 1 auto;
+        font-size: 0.8em;
+        color: var(--secondary);
+
+        text-align: right;
+        padding: 0.25em 0 0 2em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .date {
+        flex: 0 0 auto;
+        font-size: 0.8em;
+        color: var(--secondary);
+        text-align: right;
+        align-self: flex-end;
+        white-space: nowrap;
+        vertical-align: bottom;
+      }
+      .date.inline {
+        vertical-align: middle;
+      }
+      .where + .date {
+        padding-bottom: 0.6em;
+      }
+      .note {
+        font-size: 0.8em;
+        letter-spacing: 0;
+        vertical-align: baseline;
+      }
+      .overview {
+        flex: 0 0 100%;
+        padding: 0.4em 0 0.8em 0;
+      }
+      .achievements {
+        flex: 0 0 100%;
+        margin-left: 0;
+      }
+      .experience .achievements li {
+        font-size: 0.85em;
+      }
+      .position + .achievements {
+        margin-left: 3em;
+      }
+      .topic {
+        padding: 0 1.5em 0 3em;
+        flex: 0 0 4.2em;
+        white-space: nowrap;
+      }
     </style>
   </head>
   <body>
     <div class="resume-container">
-      <div class="row block-start">
+      <div class="header row block-start">
         <div class="position">
           <h1>Jan Killian</h1>
         </div>
-        <div class="contact">
-          <a
-            rel="nofollow"
-            href="https://mailhide.io/e/2fUSS3mQ"
-            onclick="window.open('https://mailhide.io/e/2fUSS3mQ','Show Email','width=500,height=500,popup'); return false;"
-            target="Show Email"
-            title="Fill the 4 missing surname letters, or click to reveal"
-            data-rev="liamg&#X40;....lik.naj"
-            data-tld="com"
-            ><span>Jan Killian</span></a
-          >, +420-776-0-776-76<br />
-          20&nbsp;Sokolská&nbsp;St., Prague&nbsp;2,
-          120&nbsp;00,&nbsp;CZ,&nbsp;EU
-        </div>
-      </div>
-      <div class="row skip-print">
-        <div class="overview">
-          <div class="controls">
+        <div>
+          <div class="contact">
             <a
-              title="Download PDF"
-              class="button"
-              href="../resume.pdf"
-              target="_blank"
-              >PDF</a
-            >
+              rel="nofollow"
+              href="https://mailhide.io/e/2fUSS3mQ"
+              onclick="window.open('https://mailhide.io/e/2fUSS3mQ','Show Email','width=360,height=360,popup'); return false;"
+              target="Show Email"
+              title="Fill the 4 missing surname letters, or click to reveal"
+              data-rev="liamg&#X40;....lik.naj"
+              data-tld="com"
+              ><span>Jan Killian</span></a
+            >, +420-776-0-776-76<br />
+            20&nbsp;Sokolská&nbsp;St., Prague&nbsp;2,
+            120&nbsp;00,&nbsp;CZ,&nbsp;EU
+          </div>
+          <div class="controls skip-print">
             <fieldset id="color-scheme" class="toggle-group">
               <label>
                 <input
@@ -691,19 +622,34 @@
                 </svg>
               </span>
             </a>
+            <a
+              title="Download PDF"
+              class="button download"
+              href="../resume.pdf"
+              target="_blank"
+            >
+              <span class="svg-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    fill="currentColor"
+                    d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"
+                  />
+                </svg>
+              </span>
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="row block-end">
+      <div class="motto-row row block-end">
         <div class="motto">
+          <h1>Jan Killian</h1>
           <em
-            >First make it <b>work</b>. Then, make it <b>beautiful</b>. Then,
-            make it <b>fast</b>.</em
+            >First make it <b>work</b>. Then, make it <b>beautiful</b>.<br />
+            Then, make it <b>fast</b>.</em
           >
-          <span class="note"
-            >—
-            <a
+          <span class="note link-like"
+            >&mdash;&nbsp;<a
               title="Become Efficient or Die: The Story of BackType"
               href="https://slideshare.net/nathanmarz/become-efficient-or-die-the-story-of-backtype"
               target="_blank"
@@ -711,7 +657,7 @@
             ></span
           >
         </div>
-        <div class="date" id="qr">
+        <div class="qr date">
           <a class="img" title="iki.bio.link" href="https://iki.bio.link">
             <picture>
               <source
@@ -784,12 +730,10 @@
         </div>
       </div>
       <div class="row block">
-        <p class="h3m1">
-          <b>Highlights</b>
-        </p>
+        <p class="h3m1">Highlights</p>
         <div class="achievements">
           <ul class="inline">
-            <li>3 years of AI-assisted and spec-driven development</li>
+            <li>3 years of AI-assisted, spec-driven and agentic development</li>
             <li>
               20 years of development experience, agile process, owning the
               outcomes
@@ -803,7 +747,7 @@
               packages
             </li>
             <li>
-              Full-remote team leading and collaboration across different time
+              Full-remote team leading, mentoring and cooperation across time
               zones
             </li>
           </ul>
@@ -847,11 +791,9 @@
 
       <div class="experience row block">
         <div class="position">
-          <p class="h3s1">
-            <b>Software Engineer</b>
-          </p>
+          <p class="h3s1">Software Engineer</p>
         </div>
-        <div class="date">2023-2025<br /></div>
+        <div class="date">2023-2025</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -860,24 +802,21 @@
             title="Be a Future delivers IT solutions and development services for government administration"
             target="_blank"
             >Be a Future</a
-          >,
+          ><span class="link-like">,</span>
           <a
             href="https://policie.gov.cz/clanek/narodni-centrum-informacnich-a-komunikacnich-technologii.aspx"
             title="National Center for Information and Communication Technologies - Police of the Czech Republic"
             target="_blank"
             >NCIKT PČR</a
           >
-          <br />
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/michal-fidler-8a868462"
-              title="Michal led the client development team on this project and we worked most closely together. He can give you references to my work"
-              >Michal Fidler</a
-            >, Team Lead, PČR</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/michal-fidler-8a868462"
+            title="Michal Fidler (Team Lead, PČR) led the client development team on this project and we worked most closely together. He can give you references to my work"
+            >Michal Fidler</a
+          >, Team Lead, PČR
         </div>
       </div>
       <div class="experience row block">
@@ -918,11 +857,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Provider</b>
-          </p>
+          <p class="h3s">Software Architect</p>
         </div>
-        <div class="date">2023<br /></div>
+        <div class="date">2023</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -936,34 +873,48 @@
             ></a
           >
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/kate%C5%99ina-h%C3%A1nov%C3%A1-377462209"
-              title="Kateřina Hánová managed engineering. She can give you references to my work"
-              >Kateřina Hánová</a
-            >, CTO</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/kate%C5%99ina-h%C3%A1nov%C3%A1-377462209"
+            title="Kateřina Hánová (CTO) managed engineering. She can give you references to my work"
+            >Kateřina Hánová</a
+          >, CTO
+        </div>
+      </div>
+      <div class="experience row block">
+        <div class="overview">
+          <p class="p31">
+            Submitted proposal for VRV IS re-implementation on a modern tech
+            stack
+          </p>
         </div>
       </div>
       <div class="experience row block-end">
-        <div class="overview">
-          <p class="p31">
-            Analyzed and planned rewrite of VRV IS with Microsoft AAD security
-            and F&amp;A, CRM and 3rd party integrations on modern TypeScript,
-            Node, PostgreSQL, GraphQL, Next.js, React stack
-          </p>
+        <div class="achievements">
+          <ul class="inline">
+            <li>
+              Analyzed and planned VRV IS re-implementation with MS AAD
+              authorization and F&amp;A, CRM and 3rd party integrations on
+              TypeScript, Node, PostgreSQL, GraphQL, Next.js and React
+            </li>
+            <li>
+              Planned on-premise deployment and data migration from existing MS
+              SQL server
+            </li>
+            <li>
+              Planned service operation processes for administration,
+              monitoring, backup and disaster recovery
+            </li>
+          </ul>
         </div>
       </div>
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Engineer</b>
-          </p>
+          <p class="h3s">Software Engineer</p>
         </div>
-        <div class="date">2020-2022<br /></div>
+        <div class="date">2020-2022</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -973,17 +924,14 @@
             target="_blank"
             >OAK'S LAB</a
           >
-          <br />
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/theo-dluhy-smith"
-              title="Theo did performance review with me. He can give you references to my work"
-              >Theo Dluhy-Smith</a
-            >, COO & Founder</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/theo-dluhy-smith"
+            title="Theo Dluhy-Smith (COO &amp; Founder) did performance review with me. He can give you references to my work"
+            >Theo Dluhy-Smith</a
+          >, COO & Founder
         </div>
       </div>
       <div class="experience row block">
@@ -1033,11 +981,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Consultant</b>
-          </p>
+          <p class="h3s">Software Consultant</p>
         </div>
-        <div class="date">2019<br /></div>
+        <div class="date">2019</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1047,17 +993,14 @@
             target="_blank"
             >SABO Mobile IT</a
           >
-          <br />
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/pavelzdenek/"
-              title="Pavel managed the GraphQL migration. He can give you references to my work"
-              >Pavel Zdeněk</a
-            >, Solution Architect</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/pavelzdenek/"
+            title="Pavel Zdeněk (Solution Architect) managed the GraphQL migration. He can give you references to my work"
+            >Pavel Zdeněk</a
+          >, Solution Architect
         </div>
       </div>
       <div class="experience row block">
@@ -1085,17 +1028,15 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Engineer</b>
-          </p>
+          <p class="h3s">Software Engineer</p>
         </div>
-        <div class="date">2017-2018<br /></div>
+        <div class="date">2017-2018</div>
       </div>
       <div class="experience row block">
         <div class="where">
           <a
             href="https://digital.pwc.ch"
-            title="The Experience Center delivers rapid agile application prototypes based on modern technologies"
+            title="The Experience Center delivers rapid agile application prototypes based on a modern technologies"
             target="_blank"
             >PwC
             <span class="note"
@@ -1103,17 +1044,14 @@
               (Digital&nbsp;Accelerator)</span
             ></a
           >
-          <br />
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/andreasleicher"
-              title="Andreas managed projects I worked on. He can give you references to my work"
-              >Andreas Leicher</a
-            >, Agile Architect</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/andreasleicher"
+            title="Andreas Leicher (Agile Architect) managed projects I worked on. He can give you references to my work"
+            >Andreas Leicher</a
+          >, Agile Architect
         </div>
       </div>
       <div class="experience row block">
@@ -1140,11 +1078,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Engineer</b>
-          </p>
+          <p class="h3s">Software Engineer</p>
         </div>
-        <div class="date">2016-2017<br /></div>
+        <div class="date">2016-2017</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1162,17 +1098,14 @@
               >(acquired by Workday)</a
             >
           </span>
-          <br />
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/peterfedorocko"
-              title="Peter managed engineering. He can give you references to my work"
-              >Peter Fedoročko</a
-            >, Founder, CEO</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/peterfedorocko"
+            title="Peter Fedoročko (Founder, CEO) managed engineering. He can give you references to my work"
+            >Peter Fedoročko</a
+          >, Founder, CEO
         </div>
       </div>
       <div class="experience row block-end">
@@ -1186,11 +1119,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Engineer</b>
-          </p>
+          <p class="h3s">Software Engineer</p>
         </div>
-        <div class="date">2013-2016<br /></div>
+        <div class="date">2013-2016</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1199,17 +1130,15 @@
             title="Salsita Software delivers modern web/mobile applications development"
             target="_blank"
             >Salsita Software</a
-          ><br />
-        </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/romankaspar"
-              title="Roman managed projects I worked on. He can give you references to my work"
-              >Roman Kaspar</a
-            >, Director of Engineering</span
           >
+        </div>
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/romankaspar"
+            title="Roman Kaspar (Director of Engineering) managed projects I worked on. He can give you references to my work"
+            >Roman Kaspar</a
+          >, Director of Engineering
         </div>
       </div>
       <div class="experience row block">
@@ -1246,11 +1175,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Head of Software Development</b>
-          </p>
+          <p class="h3s">Head of&nbsp;Software Development</p>
         </div>
-        <div class="date">2012-2013<br /></div>
+        <div class="date">2012-2013</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1266,18 +1193,16 @@
               title="Revolgy helps businesses to leverage cloud technologies and maintains Netmail brand in the service portfolio"
               target="_blank"
               >(expanded to Revolgy)</a
-            > </span
-          ><br />
+            >
+          </span>
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/bohuslavdohnal"
-              title="Bohuslav managed projects I worked on. He can give you references to my work"
-              >Bohuslav Dohnal</a
-            >, CEO</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/bohuslavdohnal"
+            title="Bohuslav Dohnal (CEO) managed projects I worked on. He can give you references to my work"
+            >Bohuslav Dohnal</a
+          >, CEO
         </div>
       </div>
       <div class="experience row block">
@@ -1302,26 +1227,19 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Developer</b>
-          </p>
+          <p class="h3s">Software Developer</p>
         </div>
-        <div class="date">2010-2011<br /></div>
+        <div class="date">2010-2011</div>
       </div>
       <div class="experience row block">
-        <div class="where a-like">
-          Multiple startups and customers
-          <br />
-        </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/tomby"
-              title="Tomáš Bílý lead group of researchers working on startups at Faculty of Mathematics and Physics at Charles University (MFF UK). He can give you references to my work"
-              >Tomáš Bílý</a
-            >, MFF UK R&amp;D</span
-          >
+        <div class="where link-like">Multiple startups and customers</div>
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/tomby"
+            title="Tomáš Bílý (MFF UK R&amp;D) lead group of researchers working on startups at Faculty of Mathematics and Physics at Charles University (MFF UK). He can give you references to my work"
+            >Tomáš Bílý</a
+          >, MFF UK R&amp;D
         </div>
       </div>
       <div class="experience row block">
@@ -1347,11 +1265,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Software Developer</b>
-          </p>
+          <p class="h3s">Software Developer</p>
         </div>
-        <div class="date">2005-2009<br /></div>
+        <div class="date">2005-2009</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1360,17 +1276,15 @@
             title="The development centre in Prague was started in 2005 and brought agile development methods to the company"
             target="_blank"
             >Commerzbank</a
-          ><br />
-        </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/ryanseanmcgloin"
-              title="Ryan McGloin managed infrastructure and maintenance projects I worked on. He can give you references to my work. ADS stands for Adaptive Development Services"
-              >Ryan McGloin</a
-            >, Local Head ADS</span
           >
+        </div>
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/ryanseanmcgloin"
+            title="Ryan McGloin (Local Head ADS) managed infrastructure and maintenance projects I worked on. He can give you references to my work. ADS stands for Adaptive Development Services"
+            >Ryan McGloin</a
+          >, Local Head ADS
         </div>
       </div>
       <div class="experience row block">
@@ -1409,11 +1323,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>IT&amp;eB Executive</b>
-          </p>
+          <p class="h3s">IT&amp;eB Executive</p>
         </div>
-        <div class="date">2002-2004<br /></div>
+        <div class="date">2002-2004</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1422,17 +1334,15 @@
             title="Wyeth Czech was a local office of major worldwide pharmaceutical company, acquired by Pfizer in 2009"
             target="_blank"
             >Wyeth <span class="note">(acquired by Pfizer)</span></a
-          ><br />
-        </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              rel="nofollow"
-              href="https://linkedin.com/in/vladimir-chmela-a5506387"
-              title="I did report to Vladimír Chmela. He can give you references to my work"
-              >Vladimír Chmela</a
-            >, CFO</span
           >
+        </div>
+        <div class="reference">
+          <a
+            rel="nofollow"
+            href="https://linkedin.com/in/vladimir-chmela-a5506387"
+            title="I did report to Vladimír Chmela (CFO). He can give you references to my work"
+            >Vladimír Chmela</a
+          >, CFO
         </div>
       </div>
       <div class="experience row block">
@@ -1468,11 +1378,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>MIS Technician</b>
-          </p>
+          <p class="h3s">MIS Technician</p>
         </div>
-        <div class="date">1999-2000<br /></div>
+        <div class="date">1999-2000</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1483,15 +1391,13 @@
             >TRW <span class="note">(acquired by ZF)</span></a
           >
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              rel="nofollow"
-              href="https://linkedin.com/in/shahed-jamal-ashraf-65198897"
-              title="Shahed Jamal Ashraf worked closely with me. He can give references to my work"
-              >Shahed Jamal Ashraf</a
-            >, CFO</span
-          >
+        <div class="reference">
+          <a
+            rel="nofollow"
+            href="https://linkedin.com/in/shahed-jamal-ashraf-65198897"
+            title="Shahed Jamal Ashraf (CFO) worked closely with me. He can give references to my work"
+            >Shahed Jamal Ashraf</a
+          >, CFO
         </div>
       </div>
       <div class="experience row block">
@@ -1521,28 +1427,23 @@
       <div class="experience row block-start">
         <div class="position">
           <p class="h3s">
-            <b
-              >User Support Technician
-              <span class="note">(Civil Service)</span></b
-            >
+            User Support Technician
+            <span class="note">(Civil Service)</span>
           </p>
         </div>
-        <div class="date">1998-1999<br /></div>
+        <div class="date">1998-1999</div>
       </div>
       <div class="experience row block">
         <div class="where">
           <a href="https://vse.cz" target="_blank">University of Economics</a>
-          <br />
         </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              target="blank"
-              href="https://linkedin.com/in/jan-havlicek-42a7725"
-              title="I did report to Jan Havlíček. He can give you references to my work"
-              >Jan Havlíček</a
-            >, Support Manager</span
-          >
+        <div class="reference">
+          <a
+            target="blank"
+            href="https://linkedin.com/in/jan-havlicek-42a7725"
+            title="I did report to Jan Havlíček (Support Manager). He can give you references to my work"
+            >Jan Havlíček</a
+          >, Support Manager
         </div>
       </div>
       <div class="experience row block">
@@ -1567,11 +1468,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Network Administrator</b>
-          </p>
+          <p class="h3s">Network Administrator</p>
         </div>
-        <div class="date">1996-2002<br /></div>
+        <div class="date">1996-2002</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1580,17 +1479,15 @@
             title="H-Media provides an in-board healthcare advertisement network in Czech Republic"
             target="_blank"
             >H-Media</a
-          ><br />
-        </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              href="https://mailhide.io/e/FItgMgSr"
-              onclick="window.open('https://mailhide.io/e/FItgMgSr','Show Email','width=500,height=500,popup'); return false;"
-              title="I did report to Michal Ouzký. He can give you references to my work. Write in Czech please"
-              >Michal Ouzký</a
-            >, Technical Manager</span
           >
+        </div>
+        <div class="reference">
+          <a
+            href="https://mailhide.io/e/FItgMgSr"
+            onclick="window.open('https://mailhide.io/e/FItgMgSr','Show Email','width=360,height=360,popup'); return false;"
+            title="I did report to Michal Ouzký (Technical Manager). He can give you references to my work. Write in Czech please"
+            >Michal Ouzký</a
+          >, Technical Manager
         </div>
       </div>
       <div class="experience row block">
@@ -1612,11 +1509,9 @@
 
       <div class="experience row block-start">
         <div class="position">
-          <p class="h3s">
-            <b>Network Administrator</b>
-          </p>
+          <p class="h3s">Network Administrator</p>
         </div>
-        <div class="date">1994-1997<br /></div>
+        <div class="date">1994-1997</div>
       </div>
       <div class="experience row block">
         <div class="where">
@@ -1626,17 +1521,15 @@
             target="_blank"
             >Billboard
             <span class="note">(acquired by Akzent /&nbsp;BigBoard)</span></a
-          ><br />
-        </div>
-        <div class="ref reference">
-          <span class="srefc">Ref:</span>&nbsp;<span class="srefc"
-            ><a
-              rel="nofollow"
-              href="https://rejstriky.finance.cz/firma-stepan-hutla-04178122"
-              title="I did report to Štěpán Hutla. He can give you references to my work"
-              >Štěpán Hutla</a
-            >, CTO</span
           >
+        </div>
+        <div class="reference">
+          <a
+            rel="nofollow"
+            href="https://rejstriky.finance.cz/firma-stepan-hutla-04178122"
+            title="I did report to Štěpán Hutla (CTO). He can give you references to my work"
+            >Štěpán Hutla</a
+          >, CTO
         </div>
       </div>
       <div class="experience row block">
@@ -1659,25 +1552,23 @@
       <div class="experience row block-start">
         <div class="position">
           <p class="h3s">
-            <b
-              >Network Administrator
-              <span class="note">(Scholarship Activity)</span></b
-            >
+            Network Administrator
+            <span class="note">(Scholarship Activity)</span>
           </p>
         </div>
-        <div class="date">1994-1995<br /></div>
+        <div class="date">1994-1995</div>
       </div>
       <div class="experience row block">
-        <div class="overview">
-          <a href="https://mff.cuni.cz" target="_blank">MFF UK</a>
-          <span class="note"
-            >&mdash;&nbsp;<a href="https://mff.cuni.cz" target="_blank">
-              Faculty of Mathematics and Physics</a
+        <div class="where">
+          <a
+            href="https://mff.cuni.cz"
+            title="Faculty of Mathematics and Physics at Charles University"
+            target="_blank"
+            >MFF UK
+            <span class="note link-like"
+              >(Faculty of Mathematics and Physics)</span
             >
-            at&nbsp;<a href="https://cuni.cz" target="_blank"
-              >Charles&nbsp;University</a
-            >
-          </span>
+          </a>
         </div>
       </div>
       <div class="experience row block-end">
@@ -1694,13 +1585,6 @@
         </div>
       </div>
       <div class="experience row block">
-        <div class="overview">
-          <p class="h31">
-            <b>Secondary and University Education</b>
-          </p>
-        </div>
-      </div>
-      <div class="experience row block">
         <div class="where">
           <p class="h41">
             <a href="https://cuni.cz/zborovska" target="_blank"
@@ -1711,43 +1595,42 @@
         <div class="date">1990-1994</div>
       </div>
       <div class="experience row block">
-        <div class="topic">Specialization:</div>
-        <div class="overview">Mathematics</div>
+        <div class="topic">Branch:</div>
+        <div>Mathematics</div>
       </div>
-      <div class="experience row block-end">
-        <div class="topic">Degree earned:</div>
-        <div class="overview">
+      <div class="experience row block">
+        <div class="topic">Degree:</div>
+        <div>
           Maturita <span class="note">(General Certificate of Education)</span>
         </div>
       </div>
-
       <div class="experience row block-start">
         <div class="where">
           <p class="h4">
-            <a href="https://mff.cuni.cz" target="_blank">MFF UK</a>
-            <span class="note"
-              >&mdash;&nbsp;<a href="https://mff.cuni.cz" target="_blank">
-                Faculty of Mathematics and Physics</a
+            <a
+              href="https://mff.cuni.cz"
+              title="Faculty of Mathematics and Physics at Charles University"
+              target="_blank"
+              >MFF UK
+              <span class="note link-like"
+                >(Faculty of Mathematics and Physics)</span
               >
-              at&nbsp;<a href="https://cuni.cz" target="_blank"
-                >Charles&nbsp;University</a
-              >
-            </span>
+            </a>
           </p>
         </div>
         <div class="date">1994-1997</div>
       </div>
       <div class="experience row block">
-        <div class="topic">Study branch:</div>
-        <div class="overview">
-          MSc in Computer Science <span class="note">(MSCS)</span>
-        </div>
+        <div class="topic">Branch:</div>
+        <div>MSc in Computer Science <span class="note">(MSCS)</span></div>
       </div>
       <div class="experience row block-end">
         <div class="overview">
-          <p class="p3">
-            Interrupted in the fourth semester due to time constraints with two
-            parallel jobs
+          <p class="p31">
+            <span class="note">
+              Interrupted in the fourth semester due to time constraints with
+              two parallel jobs
+            </span>
           </p>
         </div>
       </div>
